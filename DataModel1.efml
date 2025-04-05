@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="cnOrarend" namespace="Models" p1:name="OrarendContext" p1:Guid="a133b9c5-0aff-4d06-8c98-14c665675495" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="enFelhasznalo" entity-set="enFelhasznalos" table="Felhasznalo" p1:Guid="66ebff90-7ef0-4736-91b0-e2d621fa2f03">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a1caea66-0565-4703-ae70-8ee6d47a0499">
+      <column name="" />
+    </id>
+    <property name="nev" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="6079843e-ee82-4026-a6e1-b45d98fd6103">
+      <column name="" length="50" />
+    </property>
+    <property name="felhasznalo_nev" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="7a6936d3-1e9c-4722-9516-0096f84b8aad">
+      <column name="" length="50" unique="True" />
+    </property>
+    <property name="rang" type="Boolean" p1:ValidateRequired="true" p1:Guid="4507f2ec-2463-4b32-81dd-adb4078baf31">
+      <column name="" length="255" />
+    </property>
+    <property name="jelszo" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="9017ad05-1e96-42f2-9691-c32ae7dc3122">
+      <column name="" length="255" />
+    </property>
+    <property name="oktatasi_azonosito" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="49dea7c5-defe-4a9d-adff-747252494275">
+      <column name="" not-null="False" length="12" unique="True" />
+    </property>
+  </class>
+  <class name="enOsztaly" entity-set="enOsztalies" table="Osztaly" p1:Guid="7ec6ac1f-08bf-45bf-ab68-f3254005b37b">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a3ba6195-d299-4d5d-b641-92909f387811">
+      <column name="" />
+    </id>
+    <property name="nev" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="608200c8-31c4-488e-9566-42e637c12781">
+      <column name="" length="50" />
+    </property>
+  </class>
+  <class name="enTantargy" entity-set="enTantargies" table="Tantargy" p1:Guid="2f2701bb-949e-4b10-8220-6edb33295893">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="69338585-f9bd-4fba-bf54-c945f97e69e0">
+      <column name="" />
+    </id>
+    <property name="nev" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="d25a6671-b0f4-4695-939f-8dc93e362bab">
+      <column name="" length="50" />
+    </property>
+  </class>
+  <class name="enOra" entity-set="enOras" table="Ora" p1:Guid="5cb3a62f-16ba-489b-b012-dcbb5617ef48">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="53823296-8f58-4c4e-be64-7328e0806ccb">
+      <column name="" />
+    </id>
+    <property name="tantargy_id" type="Int32" p1:ValidateRequired="true" p1:Guid="15661f0b-d891-4402-bfb7-7cd83255f90f">
+      <column name="" />
+    </property>
+    <property name="tanar_id" type="Int32" p1:ValidateRequired="true" p1:Guid="7a1e6aac-43d6-48fd-8786-711a8a842645">
+      <column name="" />
+    </property>
+    <property name="osztaly_id" type="Int32" p1:ValidateRequired="true" p1:Guid="30596695-5391-428b-bca8-8a6d6a9e1c3e">
+      <column name="" />
+    </property>
+    <property name="tanev_id" type="Int32" p1:ValidateRequired="true" p1:Guid="ea0fa98b-6173-4711-9f4e-068b08357f78">
+      <column name="" />
+    </property>
+    <property name="kezdet" type="Time" p1:ValidateRequired="true" p1:Guid="e698e025-29f3-4b79-aa71-801948de7693">
+      <column name="" />
+    </property>
+    <property name="vege" type="Time" p1:ValidateRequired="true" p1:Guid="b3ebf009-e5d1-42b9-a433-a8c197a22150">
+      <column name="" />
+    </property>
+    <property name="nap" type="Byte" p1:ValidateRequired="true" p1:Guid="f2f9813e-b923-4d69-978e-8563f51ae2ce">
+      <column name="" />
+    </property>
+    <property name="erv_kezdet" type="Date" p1:ValidateRequired="true" p1:Guid="c9bcb0d2-83fb-419d-8a0e-e63b1b4aee5c">
+      <column name="" />
+    </property>
+    <property name="erv_vege" type="Date" p1:ValidateRequired="true" p1:Guid="aa79ad7d-68bc-4e18-9e5c-556a753cc55d">
+      <column name="" />
+    </property>
+  </class>
+  <class name="enTanev" entity-set="enTanevs" table="Tanev" p1:Guid="85be5d78-fb11-4e8e-a292-d323a08f084d">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="29452759-ecda-407d-8bf9-57cb4db3f594">
+      <column name="" />
+    </id>
+    <property name="kezdet" type="Date" p1:ValidateRequired="true" p1:Guid="2ceab933-ebd0-4d4a-88e1-c14b1b91ca2d">
+      <column name="" />
+    </property>
+    <property name="vege" type="Date" p1:ValidateRequired="true" p1:Guid="4e82656b-cb2d-4f37-9f80-227355514df5">
+      <column name="" />
+    </property>
+  </class>
+  <class name="enLog" entity-set="enLogs" p1:Guid="57327c41-7683-4b4e-83eb-89e1c06b30ca">
+    <id name="id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="ac56e913-b69a-48c3-b0c4-0e5515cf60e5">
+      <column name="" />
+    </id>
+    <property name="description" type="String" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="9d60e31a-9f96-4c95-a73f-7781513e3773">
+      <column name="" length="200" />
+    </property>
+    <property name="idopont" type="DateTime" p1:ValidateRequired="true" p1:Guid="775d73b1-027a-4707-8764-50d285d23ed5">
+      <column name="" />
+    </property>
+  </class>
+  <associations>
+    <association name="enTantargy_enOra" cardinality="OneToMany" p1:Guid="3c10242e-3d95-4737-86a8-68904cbac006">
+      <end1 multiplicity="One" name="enTantargy" class="enOra" relation-class="enTantargy" constrained="True" lazy="False" p1:Guid="fe29a15e-97d1-4f16-a655-f5ba0e9c6e94">
+        <property name="id" />
+      </end1>
+      <end2 multiplicity="Many" name="enOras" class="enTantargy" relation-class="enOra" generate="False" lazy="False" p1:Guid="3a593de5-0924-495f-9a24-8e751d3475fd">
+        <property name="tantargy_id" />
+      </end2>
+    </association>
+    <association name="enFelhasznalo_enOra" cardinality="OneToMany" p1:Guid="2b5e728c-5e95-4c1a-85a4-974e7130db80">
+      <end1 multiplicity="One" name="enFelhasznalo" class="enOra" relation-class="enFelhasznalo" constrained="True" lazy="False" p1:Guid="7977572c-4744-4032-b981-c6fc0304615d">
+        <property name="id" />
+      </end1>
+      <end2 multiplicity="Many" name="enOras" class="enFelhasznalo" relation-class="enOra" lazy="False" p1:Guid="0f4dadf4-cf54-4f7f-bf31-dae7345affef">
+        <property name="tanar_id" />
+      </end2>
+    </association>
+    <association name="enOsztaly_enOra" cardinality="OneToMany" p1:Guid="0c1cef4b-9097-4c1b-addb-ec28cf081168">
+      <end1 multiplicity="One" name="enOsztaly" class="enOra" relation-class="enOsztaly" constrained="True" lazy="False" p1:Guid="d9a8ec77-105a-48ba-a093-81481ef781aa">
+        <property name="id" />
+      </end1>
+      <end2 multiplicity="Many" name="enOras1" class="enOsztaly" relation-class="enOra" generate="False" lazy="False" p1:Guid="bc7d74a0-4c18-47eb-ad0d-1486e4f97eca">
+        <property name="osztaly_id" />
+      </end2>
+    </association>
+    <association name="enTanev_enOra" cardinality="OneToMany" p1:Guid="65b32c8d-bf73-4142-b610-d774c53132cc">
+      <end1 multiplicity="One" name="enTanev" class="enOra" relation-class="enTanev" constrained="True" lazy="False" p1:Guid="ab54ae67-eb51-4f7e-a785-7c0b2255d1d7">
+        <property name="id" />
+      </end1>
+      <end2 multiplicity="Many" name="enOras1" class="enTanev" relation-class="enOra" generate="False" lazy="False" p1:Guid="a8f1977b-061c-4b84-930b-80cea43f0ea2">
+        <property name="tanev_id" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
