@@ -1,0 +1,167 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|c:\\users\\tomoz\\source\\repos\\viz_projekt_feladat\\viz_projekt_feladat\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|solutionrelative:viz_projekt_feladat\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|c:\\users\\tomoz\\source\\repos\\viz_projekt_feladat\\viz_projekt_feladat\\context\\datamodel1.orarendcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|solutionrelative:viz_projekt_feladat\\context\\datamodel1.orarendcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|c:\\users\\tomoz\\source\\repos\\viz_projekt_feladat\\viz_projekt_feladat\\teachereditwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|solutionrelative:viz_projekt_feladat\\teachereditwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.46645.rartemp\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.47440.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|c:\\users\\tomoz\\source\\repos\\viz_projekt_feladat\\viz_projekt_feladat\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|solutionrelative:viz_projekt_feladat\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.26847.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|c:\\users\\tomoz\\source\\repos\\viz_projekt_feladat\\viz_projekt_feladat\\teachereditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5623D99B-7D4E-48BB-A66E-B7F8B2126877}|Viz_Projekt_Feladat\\Viz_Projekt_Feladat.csproj|solutionrelative:viz_projekt_feladat\\teachereditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tomoz\\Documents\\VizProg_beadando\\DataModel1.enOsztaly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Viz_Projekt_Feladat\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Viz_Projekt_Feladat\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:58:15.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataModel1.OrarendContext.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\Context\\DataModel1.OrarendContext.cs",
+              "RelativeDocumentMoniker": "Viz_Projekt_Feladat\\Context\\DataModel1.OrarendContext.cs",
+              "ToolTip": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\Context\\DataModel1.OrarendContext.cs",
+              "RelativeToolTip": "Viz_Projekt_Feladat\\Context\\DataModel1.OrarendContext.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAmwDEAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T11:42:14.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TeacherEditWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\TeacherEditWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Viz_Projekt_Feladat\\TeacherEditWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\TeacherEditWindow.xaml.cs",
+              "RelativeToolTip": "Viz_Projekt_Feladat\\TeacherEditWindow.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAmwBoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T10:44:41.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.46645.rartemp\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.46645.rartemp\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.46645.rartemp\\MainWindow.xaml.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.46645.rartemp\\MainWindow.xaml.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T11:02:37.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.47440.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.47440.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "ToolTip": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.47440.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.47440.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T11:52:45.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Viz_Projekt_Feladat\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\MainWindow.xaml",
+              "RelativeToolTip": "Viz_Projekt_Feladat\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-01T10:58:09.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.26847.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.26847.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "ToolTip": "C:\\Users\\tomoz\\AppData\\Local\\Temp\\Rar$DIa19304.26847.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\Rar$DIa19304.26847.rartemp\\Telefonszamok_NLA01.TelefonkonyvContext.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T11:40:59.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TeacherEditWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\TeacherEditWindow.xaml",
+              "RelativeDocumentMoniker": "Viz_Projekt_Feladat\\TeacherEditWindow.xaml",
+              "ToolTip": "C:\\Users\\tomoz\\source\\repos\\Viz_Projekt_Feladat\\Viz_Projekt_Feladat\\TeacherEditWindow.xaml",
+              "RelativeToolTip": "Viz_Projekt_Feladat\\TeacherEditWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-05T17:28:45.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DataModel1.enOsztaly.cs",
+              "DocumentMoniker": "C:\\Users\\tomoz\\Documents\\VizProg_beadando\\DataModel1.enOsztaly.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Documents\\VizProg_beadando\\DataModel1.enOsztaly.cs",
+              "ToolTip": "C:\\Users\\tomoz\\Documents\\VizProg_beadando\\DataModel1.enOsztaly.cs",
+              "RelativeToolTip": "..\\..\\..\\Documents\\VizProg_beadando\\DataModel1.enOsztaly.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:52:27.1Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
