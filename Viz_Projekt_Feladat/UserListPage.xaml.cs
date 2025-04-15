@@ -24,13 +24,19 @@ namespace Viz_Projekt_Feladat
     public partial class UserListPage : Page
     {
         TimetableContext _context;
-
-        public UserListPage()
+        public class UserViewModel
         {
-            InitializeComponent();
-            _context = new TimetableContext();
+            public int Id { get; set; }
+            public string Username { get; set; }
+            public decimal? EduId { get; set; }
+            public string Name { get; set; }
+            public bool Admin { get; set; }
+        }
+
+        public void getList()
+        {
             var lekerdezes = (from s in _context.enUsers
-                              select new enUser
+                              select new UserViewModel
                               {
                                   Id = s.Id,
                                   Username = s.Username,
@@ -39,6 +45,41 @@ namespace Viz_Projekt_Feladat
                                   Admin = s.Admin
                               }).ToList();
             dgUsers.ItemsSource = lekerdezes;
+        }
+        
+        public UserListPage()
+        {
+            InitializeComponent();
+            _context = new TimetableContext();
+            getList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            // Get the row's bound data (UserViewModel) from the button's Tag
+            var user = button?.Tag as UserViewModel;
+            var window = new UserEditWindow(user.Id);
+            window.ShowDialog();
+            getList();
+
+// MessageBox.Show($"{user.Id}");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            // Get the row's bound data (UserViewModel) from the button's Tag
+            var user = button?.Tag as UserViewModel;
+
+            var userToDelete = _context.enUsers.FirstOrDefault(u => u.Id == user.Id);
+            _context.enUsers.Remove(userToDelete);
+            _context.SaveChanges();
+            MessageBox.Show("User deleted successfully.");
+
+            // MessageBox.Show("Törlés");
         }
     }
 }

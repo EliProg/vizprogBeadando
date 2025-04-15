@@ -9,8 +9,35 @@
       Title="UserListPage">
 
     <Grid>
-        <DataGrid x:Name="dgUsers">
+        <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
+                <DataGridTextColumn Header="EduId" Binding="{Binding EduId}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridCheckBoxColumn Header="Admin" Binding="{Binding Admin}" />
 
+                <!-- Add Button Column -->
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit"
+                            Click="Button_Click"
+                            Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete"
+            Click="Button_Click_1"
+            Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>

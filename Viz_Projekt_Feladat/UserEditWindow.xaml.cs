@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,21 @@ namespace Viz_Projekt_Feladat
     {
         TimetableContext _context;
 
+        enUser user;
+
         public UserEditWindow(int id)
         {
             InitializeComponent();
             _context = new TimetableContext();
-            var lekerdezes = (from s in _context.enUsers
-                              where s.Id == id
-                              select s.Name).ToList();
-            name.Text = lekerdezes[0];
+            user = _context.enUsers.SingleOrDefault(b => b.Id == id);
+            name.Text = user.Name;
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+            user.Name = name.Text;
+            _context.SaveChanges();
+            this.Close();
         }
     }
 }

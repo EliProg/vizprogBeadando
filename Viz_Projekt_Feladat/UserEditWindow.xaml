@@ -8,7 +8,7 @@
         Title="UserEditWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Label>Név</Label>
+            <Label >Név</Label>
             <TextBox x:Name="name"></TextBox>
             <Label>Felhasználónév</Label>
             <TextBox></TextBox>
@@ -16,7 +16,7 @@
             <TextBox></TextBox>
             <Label>Admin</Label>
             <CheckBox></CheckBox>
-            <Button>Mentés</Button>
+            <Button x:Name="Mentes" Click="Mentes_Click">Mentés</Button>
             <Button>Mégse</Button>
         </StackPanel>
     </Grid>
