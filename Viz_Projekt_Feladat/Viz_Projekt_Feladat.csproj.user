@@ -10,18 +10,33 @@
     <Compile Update="ClassEditWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ClassListPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="LessonEditWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="TeacherEditWindow.xaml.cs">
+    <Compile Update="TimetableLessonListPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TimetablePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserEditWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserListPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ClassEditWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ClassListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LessonEditWindow.xaml">
@@ -33,7 +48,16 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="TeacherEditWindow.xaml">
+    <Page Update="TimetableLessonListPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TimetablePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserEditWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

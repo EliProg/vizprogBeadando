@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\tomoz\source\repos\Viz_Projekt_Feladat\Viz_Projekt_Feladat\App.xaml
-5-20374670
+91218830949
 
-171469252844
+23-840545497
 232-789731274
-ClassEditWindow.xaml;LessonEditWindow.xaml;LoginWindow.xaml;MainWindow.xaml;TeacherEditWindow.xaml;
+ClassEditWindow.xaml;ClassListPage.xaml;LessonEditWindow.xaml;LoginWindow.xaml;MainWindow.xaml;TimetableLessonListPage.xaml;TimetablePage.xaml;UserEditWindow.xaml;UserListPage.xaml;
 
-False
+True
 

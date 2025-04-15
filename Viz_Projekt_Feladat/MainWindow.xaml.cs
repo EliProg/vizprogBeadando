@@ -1,4 +1,4 @@
-﻿using cnOrarend;
+﻿using cnTimetable;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,12 +17,14 @@ namespace Viz_Projekt_Feladat
     /// </summary>
     public partial class MainWindow : Window
     {
+        TimetableContext _context;
 
-        OrarendContext _context;
         public MainWindow()
         {
             InitializeComponent();
-            _context = new OrarendContext();
+            _context = new TimetableContext();
+            MainFrame.Navigate(new UserListPage());
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -30,7 +32,7 @@ namespace Viz_Projekt_Feladat
             /* LoginWindow barmilehet = new LoginWindow();
              barmilehet.Show(); */
 
-            var window = new TeacherEditWindow(_context, 1);
+            var window = new UserEditWindow(2);
             window.Show();
         }
     }
