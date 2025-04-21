@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using cnTimetable;
 using Models;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
     /// Interaction logic for UserListPage.xaml

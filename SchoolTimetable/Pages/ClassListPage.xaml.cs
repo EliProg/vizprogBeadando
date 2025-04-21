@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
-    /// Interaction logic for TimetableLessonListPage.xaml
+    /// Interaction logic for ClassListPage.xaml
     /// </summary>
-    public partial class TimetableLessonListPage : Page
+    public partial class ClassListPage : Page
     {
-        public TimetableLessonListPage()
+        public ClassListPage()
         {
             InitializeComponent();
         }

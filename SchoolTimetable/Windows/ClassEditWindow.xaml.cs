@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
-    /// Interaction logic for LessonEditWindow.xaml
+    /// Interaction logic for ClassEditWindow.xaml
     /// </summary>
-    public partial class LessonEditWindow : Window
+    public partial class ClassEditWindow : Window
     {
-        public LessonEditWindow()
+        public ClassEditWindow()
         {
             InitializeComponent();
         }

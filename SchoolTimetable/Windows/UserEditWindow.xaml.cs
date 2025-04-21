@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
     /// Interaction logic for TeacherEditWindow.xaml

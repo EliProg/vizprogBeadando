@@ -10,20 +10,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        TimetableContext _context;
-
+        //TimetableContext _context;
         public MainWindow()
         {
             InitializeComponent();
-            _context = new TimetableContext();
-            MainFrame.Navigate(new UserListPage());
+        }
+
+        public MainWindow(string username)
+        {
+            InitializeComponent();
+            //_context = new TimetableContext();
+            //MainFrame.Navigate(new UserListPage());
 
         }
 

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
     /// Interaction logic for App.xaml

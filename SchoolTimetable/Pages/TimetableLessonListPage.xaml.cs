@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Viz_Projekt_Feladat
+namespace SchoolTimetable
 {
     /// <summary>
-    /// Interaction logic for ClassEditWindow.xaml
+    /// Interaction logic for TimetableLessonListPage.xaml
     /// </summary>
-    public partial class ClassEditWindow : Window
+    public partial class TimetableLessonListPage : Page
     {
-        public ClassEditWindow()
+        public TimetableLessonListPage()
         {
             InitializeComponent();
         }
