@@ -15,16 +15,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using cnTimetable;
 using Models;
+using SchoolTimetable.Windows;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Pages
 {
     /// <summary>
-    /// Interaction logic for UserListPage.xaml
+    /// Interaction logic for pgUserList.xaml
     /// </summary>
-    public partial class UserListPage : Page
+    public partial class pgUserList : Page
     {
         TimetableContext _context;
-        public class UserViewModel
+
+        private class UserViewModel
         {
             public int Id { get; set; }
             public string Username { get; set; }
@@ -33,7 +35,7 @@ namespace SchoolTimetable
             public bool Admin { get; set; }
         }
 
-        public void getList()
+        private void getList()
         {
             var lekerdezes = (from s in _context.enUsers
                               select new UserViewModel
@@ -46,28 +48,27 @@ namespace SchoolTimetable
                               }).ToList();
             dgUsers.ItemsSource = lekerdezes;
         }
-        
-        public UserListPage()
+
+        public pgUserList()
         {
             InitializeComponent();
             _context = new TimetableContext();
             getList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
             // Get the row's bound data (UserViewModel) from the button's Tag
             var user = button?.Tag as UserViewModel;
-            var window = new UserEditWindow(user.Id);
+            var window = new wndUserEdit(user.Id);
             window.ShowDialog();
             getList();
-
-// MessageBox.Show($"{user.Id}");
+            // MessageBox.Show($"{user.Id}");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
@@ -77,6 +78,7 @@ namespace SchoolTimetable
             var userToDelete = _context.enUsers.FirstOrDefault(u => u.Id == user.Id);
             _context.enUsers.Remove(userToDelete);
             _context.SaveChanges();
+
             MessageBox.Show("User deleted successfully.");
 
             // MessageBox.Show("Törlés");

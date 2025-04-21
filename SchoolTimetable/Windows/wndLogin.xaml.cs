@@ -13,14 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Windows
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for wndLogin.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class wndLogin : Window
     {
-        public LoginWindow()
+        public wndLogin()
         {
             InitializeComponent();
         }
@@ -32,13 +32,13 @@ namespace SchoolTimetable
                 var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text);
                 if (user == null || !BCrypt.Net.BCrypt.EnhancedVerify(tbPassword.Text, user.Password))
                 {
-                    MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Login", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    var m = new MainWindow(tbUsername.Text);
-                    this.Hide();
-                    m.ShowDialog();
+                    this.Close();
+                    var w = new wndMain(user);
+                    w.Show();
                 }
             }
         }

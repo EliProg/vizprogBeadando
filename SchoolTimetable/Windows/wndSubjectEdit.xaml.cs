@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Windows
 {
     /// <summary>
-    /// Interaction logic for LessonEditWindow.xaml
+    /// Interaction logic for wndSubjectEdit.xaml
     /// </summary>
-    public partial class LessonEditWindow : Window
+    public partial class wndSubjectEdit : Window
     {
-        public LessonEditWindow()
+        public wndSubjectEdit()
         {
             InitializeComponent();
         }

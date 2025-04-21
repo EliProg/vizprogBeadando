@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Windows
 {
     /// <summary>
-    /// Interaction logic for ClassListPage.xaml
+    /// Interaction logic for wndTimetableLessonEdit.xaml
     /// </summary>
-    public partial class ClassListPage : Page
+    public partial class wndTimetableLessonEdit : Window
     {
-        public ClassListPage()
+        public wndTimetableLessonEdit()
         {
             InitializeComponent();
         }

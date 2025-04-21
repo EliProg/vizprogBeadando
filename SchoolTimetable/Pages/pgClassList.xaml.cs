@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Pages
 {
     /// <summary>
-    /// Interaction logic for TimetablePage.xaml
+    /// Interaction logic for pgClassList.xaml
     /// </summary>
-    public partial class TimetablePage : Page
+    public partial class pgClassList : Page
     {
-        public TimetablePage()
+        public pgClassList()
         {
             InitializeComponent();
         }

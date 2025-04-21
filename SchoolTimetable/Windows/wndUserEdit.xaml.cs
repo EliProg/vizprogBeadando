@@ -15,23 +15,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable
+namespace SchoolTimetable.Windows
 {
     /// <summary>
     /// Interaction logic for TeacherEditWindow.xaml
     /// </summary>
-    public partial class UserEditWindow : Window
+    public partial class wndUserEdit : Window
     {
         TimetableContext _context;
 
         enUser user;
 
-        public UserEditWindow(int id)
+        public wndUserEdit(int id)
         {
             InitializeComponent();
             _context = new TimetableContext();
             user = _context.enUsers.SingleOrDefault(b => b.Id == id);
-            name.Text = user.Name;
         }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
