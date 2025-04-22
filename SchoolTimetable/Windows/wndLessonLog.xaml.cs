@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SchoolTimetable.Helpers;
 
 namespace SchoolTimetable.Windows
 {
@@ -19,7 +20,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLessonLog : Window
     {
-        public wndLessonLog()
+        public wndLessonLog(LessonViewModel lesson)
         {
             InitializeComponent();
         }

@@ -33,10 +33,15 @@ namespace SchoolTimetable.Windows
             user = _context.enUsers.SingleOrDefault(b => b.Id == id);
         }
 
-        private void Mentes_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             user.Name = name.Text;
             _context.SaveChanges();
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

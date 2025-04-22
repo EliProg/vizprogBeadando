@@ -56,6 +56,11 @@ namespace SchoolTimetable.Pages
             getList();
         }
 
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;

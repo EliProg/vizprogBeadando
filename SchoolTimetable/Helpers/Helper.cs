@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace SchoolTimetable.Helpers
 {
-    internal class Helper
+    public class LessonViewModel
     {
+        public int Id { get; set; }
+    }
+
+    internal static class Helper
+    {
+
     }
 }

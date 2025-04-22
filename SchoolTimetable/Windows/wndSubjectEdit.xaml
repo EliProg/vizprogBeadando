@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="wndSubjectEdit" Height="450" Width="800">
     <Grid>
-
+        <StackPanel>
+            <Label>Név</Label>
+            <TextBox></TextBox>
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Button Click="btnCancel_Click">Mégse</Button>
+        </StackPanel>
     </Grid>
 </Window>

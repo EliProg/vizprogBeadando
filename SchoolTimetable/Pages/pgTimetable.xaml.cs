@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SchoolTimetable.Helpers;
 
 namespace SchoolTimetable.Pages
 {
@@ -26,15 +27,6 @@ namespace SchoolTimetable.Pages
         TimetableContext _context;
 
         int userId;
-
-        private class LessonViewModel
-        {
-            public int Id { get; set; }
-            public string Username { get; set; }
-            public decimal? EduId { get; set; }
-            public string Name { get; set; }
-            public bool Admin { get; set; }
-        }
 
         public pgTimetable(int userId)
         {
@@ -49,7 +41,11 @@ namespace SchoolTimetable.Pages
             var date = datetime.Value.Date.ToString("yyyy-MM-dd");
             var lessons = _context.Database.SqlQuery<LessonViewModel>(
                 @$"
-                select *
+                select
+                    coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
+                    coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
+                    coalesce(LL.ClassId, TL.ClassId) ClassId,
+                    coalesce(LL.LessonNum, TL.LessonNum) LessonNum
                 from (
                     select *
                     from LoggedLesson
@@ -57,7 +53,7 @@ namespace SchoolTimetable.Pages
                     where LoggedLesson.SchoolYearId = {userId}
                     and LoggedLesson.TeacherId = {userId}
                     and LoggedLesson.Date = {date}
-                ) LoggedLesson
+                ) LL
                 full outer join (
                     select *
                     from TimetableLesson
@@ -66,15 +62,15 @@ namespace SchoolTimetable.Pages
                     and TimetableLesson.TeacherId = {userId}
                     and TimetableLesson.StartDate <= {date}
                     and TimetableLesson.EndDate >= {date}
-                ) TimetableLesson on
-                    TimetableLesson.SubjectId = LoggedLesson.SubjectId
-                    and TimetableLesson.ClassId = LoggedLesson.ClassId
-                    and TimetableLesson.DayNum = datepart(dw, LoggedLesson.Date)
-                    and TimetableLesson.LessonNum = LoggedLesson.LessonNum
+                ) TL on
+                    TL.SubjectId = LL.SubjectId
+                    and TL.ClassId = LL.ClassId
+                    and TL.DayNum = datepart(dw, LL.Date)
+                    and TL.LessonNum = LL.LessonNum
                 ").ToList();
         }
 
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             getList();
         }

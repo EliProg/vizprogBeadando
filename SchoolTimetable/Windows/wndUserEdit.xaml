@@ -16,8 +16,8 @@
             <TextBox></TextBox>
             <Label>Admin</Label>
             <CheckBox></CheckBox>
-            <Button x:Name="Mentes" Click="Mentes_Click">Mentés</Button>
-            <Button>Mégse</Button>
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Button Click="btnCancel_Click">Mégse</Button>
         </StackPanel>
     </Grid>
 </Window>

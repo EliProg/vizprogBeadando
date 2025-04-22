@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,31 +16,26 @@ using System.Windows.Shapes;
 namespace SchoolTimetable.Pages
 {
     /// <summary>
-    /// Interaction logic for pgTimetableLessonList.xaml
+    /// Interaction logic for pgTimetableSearch.xaml
     /// </summary>
-    public partial class pgTimetableLessonList : Page
+    public partial class pgTimetableSearch : Page
     {
-        private void getList()
-        {
-
-        }
-
-        public pgTimetableLessonList()
+        public pgTimetableSearch()
         {
             InitializeComponent();
         }
 
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void cbTeacher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

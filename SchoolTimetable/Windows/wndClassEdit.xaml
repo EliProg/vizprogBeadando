@@ -10,8 +10,8 @@
         <StackPanel>
             <Label>Név</Label>
             <TextBox></TextBox>
-            <Button>Mentés</Button>
-            <Button>Mégse</Button>
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Button Click="btnCancel_Click">Mégse</Button>
         </StackPanel>
     </Grid>
 </Window>
