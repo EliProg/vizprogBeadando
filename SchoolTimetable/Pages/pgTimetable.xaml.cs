@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SchoolTimetable.Helpers;
+using System.Collections;
+using SchoolTimetable.Windows;
 
 namespace SchoolTimetable.Pages
 {
@@ -27,51 +29,84 @@ namespace SchoolTimetable.Pages
         TimetableContext _context;
 
         int userId;
+        int schoolYearId;
 
-        public pgTimetable(int userId)
+        public pgTimetable(int userId, int schoolYearId)
         {
             InitializeComponent();
             _context = new TimetableContext();
             this.userId = userId;
+            this.schoolYearId = schoolYearId;
         }
 
         private void getList()
         {
             var datetime = dpDate.SelectedDate;
-            var date = datetime.Value.Date.ToString("yyyy-MM-dd");
+            var date = datetime.Value.ToString("yyyyMMdd");
             var lessons = _context.Database.SqlQuery<LessonViewModel>(
                 @$"
+                set datefirst 1;
                 select
-                    coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
-                    coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
-                    coalesce(LL.ClassId, TL.ClassId) ClassId,
-                    coalesce(LL.LessonNum, TL.LessonNum) LessonNum
+                    L.LoggedLessonId,
+                    L.Topic,
+                    cast({date} as datetime) Date,
+                    Users.Name Teacher,
+                    Users.Id TeacherId,
+                    Subjects.Name Subject,
+                    Subjects.Id SubjectId,
+                    Classes.Name Class,
+                    Classes.Id ClassId,
+                    LessonSchedules.LessonNum,
+                    LessonSchedules.StartTime LessonStart,
+                    LessonSchedules.EndTime LessonEnd
                 from (
-                    select *
-                    from LoggedLesson
-                    inner join LessonSchedule on LoggedLesson.LessonNum = LessonSchedule.Id
-                    where LoggedLesson.SchoolYearId = {userId}
-                    and LoggedLesson.TeacherId = {userId}
-                    and LoggedLesson.Date = {date}
-                ) LL
-                full outer join (
-                    select *
-                    from TimetableLesson
-                    inner join LessonSchedule on TimetableLesson.LessonNum = LessonSchedule.Id
-                    where TimetableLesson.SchoolYearId = {userId}
-                    and TimetableLesson.TeacherId = {userId}
-                    and TimetableLesson.StartDate <= {date}
-                    and TimetableLesson.EndDate >= {date}
-                ) TL on
-                    TL.SubjectId = LL.SubjectId
-                    and TL.ClassId = LL.ClassId
-                    and TL.DayNum = datepart(dw, LL.Date)
-                    and TL.LessonNum = LL.LessonNum
-                ").ToList();
+                    select
+                        LL.Id LoggedLessonId,
+                        LL.Topic,
+                        coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
+                        coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
+                        coalesce(LL.ClassId, TL.ClassId) ClassId,
+                        coalesce(LL.LessonNum, TL.LessonNum) LessonNum
+                    from (
+                        select *
+                        from LoggedLessons
+                        where LoggedLessons.SchoolYearId = {schoolYearId}
+                        and LoggedLessons.TeacherId = {userId}
+                        and LoggedLessons.Date = {date}
+                    ) LL
+                    full outer join (
+                        select *
+                        from TimetableLessons
+                        where TimetableLessons.SchoolYearId = {schoolYearId}
+                        and TimetableLessons.TeacherId = {userId}
+                        and TimetableLessons.DayNum = datepart(dw, {date})
+                        and TimetableLessons.StartDate <= {date}
+                        and TimetableLessons.EndDate >= {date}
+                    ) TL on
+                        TL.SubjectId = LL.SubjectId
+                        and TL.ClassId = LL.ClassId
+                        and TL.DayNum = datepart(dw, LL.Date)
+                        and TL.LessonNum = LL.LessonNum
+                ) L
+                inner join Users on L.TeacherId = Users.Id
+                inner join Subjects on L.SubjectId = Subjects.Id
+                inner join Classes on L.ClassId = Classes.Id
+                inner join LessonSchedules on L.LessonNum = LessonSchedules.LessonNum
+            ").ToList();
+            dgLessons.ItemsSource = lessons;
         }
 
         private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            getList();
+        }
+
+        private void btnLog_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var lesson = button?.Tag as LessonViewModel;
+            var window = new wndLessonLog(lesson);
+            window.ShowDialog();
             getList();
         }
     }

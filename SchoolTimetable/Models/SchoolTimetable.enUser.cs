@@ -31,13 +31,13 @@ namespace Models
 
         public string Username { get; set; }
 
-        public decimal? EduId { get; set; }
+        public string? EduId { get; set; }
 
         public string Name { get; set; }
 
         public bool Admin { get; set; }
 
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         public virtual IList<enLoggedLesson> enLoggedLesson { get; set; }
 

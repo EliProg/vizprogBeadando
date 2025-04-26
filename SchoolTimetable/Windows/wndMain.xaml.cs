@@ -31,14 +31,14 @@ namespace SchoolTimetable.Windows
                 miAdmin.Visibility = Visibility.Visible;
                 miTimetables.Visibility = Visibility.Visible;
             }
-            fmMain.Navigate(new pgTimetable(userId));
+            fmMain.Navigate(new pgTimetable(userId, 1));
         }
 
         private void miLogout_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             var w = new wndLogin();
             w.Show();
+            this.Close();
         }
 
         private void miClose_Click(object sender, RoutedEventArgs e)
@@ -68,12 +68,12 @@ namespace SchoolTimetable.Windows
 
         private void miTimetables_Click(object sender, RoutedEventArgs e)
         {
-            //fmMain.Navigate(new pgSubjectList());
+            fmMain.Navigate(new pgTimetableSearch());
         }
 
         private void miMyTimetable_Click(object sender, RoutedEventArgs e)
         {
-            fmMain.Navigate(new pgTimetable(userId));
+            fmMain.Navigate(new pgTimetable(userId, 1));
         }
     }
 }

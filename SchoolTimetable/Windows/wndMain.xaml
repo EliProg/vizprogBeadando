@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
         Title="wndMain" Height="450" Width="800">
-    <StackPanel>
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem x:Name="miAdmin" Visibility="Collapsed" Header="Adminisztráció">
-                <MenuItem Click="miTimetableLessons_Click">Órarend</MenuItem>
-                <MenuItem Click="miUsers_Click">Felhasználók</MenuItem>
-                <MenuItem Click="miSchoolYears_Click">Tanévek</MenuItem>
-                <MenuItem Click="miSubjects_Click">Tantárgyak</MenuItem>
+                <MenuItem Header="Órarend" Click="miTimetableLessons_Click"/>
+                <MenuItem Header="Felhasználók" Click="miUsers_Click"/>
+                <MenuItem Header="Tantárgyak" Click="miSubjects_Click"/>
+                <MenuItem Header="Tanévek" Click="miSchoolYears_Click"/>
             </MenuItem>
             <MenuItem x:Name="miTimetables" Visibility="Collapsed" Click="miTimetables_Click" Header="Órarendek"/>
             <MenuItem x:Name="miMyTimetable" Click="miMyTimetable_Click" Header="Saját órarend"/>
@@ -26,8 +26,6 @@
                 <MenuItem Header="Bezárás" Click="miClose_Click"/>
             </MenuItem>
         </Menu>
-        <Grid Margin="160,150,490,244">
-            <Frame Name="fmMain" NavigationUIVisibility="Hidden" Margin="0,0,-375,-209" />
-        </Grid>
-    </StackPanel>
+        <Frame Name="fmMain" Margin="10" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
 </Window>

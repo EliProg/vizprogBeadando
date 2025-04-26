@@ -1,4 +1,7 @@
-﻿using System;
+﻿using cnTimetable;
+using SchoolTimetable.Helpers;
+using SchoolTimetable.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,34 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetableSearch : Page
     {
+        TimetableContext _context;
+
         public pgTimetableSearch()
         {
+            _context = new TimetableContext();
             InitializeComponent();
+
+            var teachers = (
+                from t in _context.enUsers
+                select new
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                }).ToList();
+            cbTeacher.ItemsSource = teachers;
+            cbTeacher.SelectedValuePath = "Id";
+            cbTeacher.DisplayMemberPath = "Name";
+
+            var classes = (
+                from c in _context.enClasses
+                select new
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToList();
+            cbClass.ItemsSource = classes;
+            cbClass.SelectedValuePath = "Id";
+            cbClass.DisplayMemberPath = "Name";
         }
 
         private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -36,6 +64,11 @@ namespace SchoolTimetable.Pages
         }
 
         private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnLog_Click(object sender, RoutedEventArgs e)
         {
 
         }

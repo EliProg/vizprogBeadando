@@ -30,15 +30,15 @@ namespace SchoolTimetable.Windows
             using (TimetableContext _context = new())
             {
                 var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text);
-                if (user == null || !BCrypt.Net.BCrypt.EnhancedVerify(tbPassword.Text, user.Password))
+                if (user == null || !BCrypt.Net.BCrypt.Verify(tbPassword.Text, user.PasswordHash))
                 {
                     MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    this.Close();
                     var w = new wndMain(user);
                     w.Show();
+                    this.Close();
                 }
             }
         }

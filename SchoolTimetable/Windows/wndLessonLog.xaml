@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
         Title="wndLessonLog" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Margin="10">
+        <Label>Dátum</Label>
+        <TextBox x:Name="tbDate" IsReadOnly="True"/>
+        <Label>Óra</Label>
+        <TextBox x:Name="tbLessonNum" IsReadOnly="True"/>
+        <Label>Osztály</Label>
+        <TextBox x:Name="tbClass" IsReadOnly="True"/>
+        <Label>Tantárgy</Label>
+        <TextBox x:Name="tbSubject" IsReadOnly="True"/>
+        <Label>Tanár</Label>
+        <TextBox x:Name="tbTeacher" IsReadOnly="True"/>
+        <Label>Téma</Label>
+        <TextBox x:Name="tbTopic"/>
+        <Button Click="btnSave_Click">Mentés</Button>
+        <Button Click="btnCancel_Click">Mégse</Button>
+    </StackPanel>
 </Window>

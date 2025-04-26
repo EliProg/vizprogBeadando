@@ -145,7 +145,7 @@ namespace cnTimetable
             modelBuilder.Entity<enUser>().Property(x => x.EduId).HasColumnName(@"EduId").ValueGeneratedNever().HasMaxLength(12);
             modelBuilder.Entity<enUser>().Property(x => x.Name).HasColumnName(@"Name").IsRequired().ValueGeneratedNever().HasMaxLength(50);
             modelBuilder.Entity<enUser>().Property(x => x.Admin).HasColumnName(@"Admin").IsRequired().ValueGeneratedNever().HasMaxLength(255);
-            modelBuilder.Entity<enUser>().Property(x => x.Password).HasColumnName(@"Password").IsRequired().ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<enUser>().Property(x => x.PasswordHash).HasColumnName(@"PasswordHash").IsRequired().ValueGeneratedNever().HasMaxLength(255);
             modelBuilder.Entity<enUser>().HasKey(@"Id");
             modelBuilder.Entity<enUser>().HasIndex(@"Username").IsUnique(true);
             modelBuilder.Entity<enUser>().HasIndex(@"EduId").IsUnique(true);
@@ -195,7 +195,7 @@ namespace cnTimetable
             modelBuilder.Entity<enLoggedLesson>().Property(x => x.SchoolYearId).HasColumnName(@"SchoolYearId").IsRequired().ValueGeneratedNever();
             modelBuilder.Entity<enLoggedLesson>().Property(x => x.LessonNum).HasColumnName(@"LessonNum").IsRequired().ValueGeneratedNever();
             modelBuilder.Entity<enLoggedLesson>().Property(x => x.Date).HasColumnName(@"Date").IsRequired().ValueGeneratedNever();
-            modelBuilder.Entity<enLoggedLesson>().Property(x => x.Description).HasColumnName(@"Description").IsRequired().ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<enLoggedLesson>().Property(x => x.Topic).HasColumnName(@"Topic").IsRequired().ValueGeneratedNever().HasMaxLength(255);
             modelBuilder.Entity<enLoggedLesson>().HasKey(@"Id");
         }
 

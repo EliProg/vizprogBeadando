@@ -30,7 +30,7 @@ namespace SchoolTimetable.Pages
         {
             public int Id { get; set; }
             public string Username { get; set; }
-            public decimal? EduId { get; set; }
+            public string? EduId { get; set; }
             public string Name { get; set; }
             public bool Admin { get; set; }
         }
