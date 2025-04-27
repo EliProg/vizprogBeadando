@@ -19,21 +19,12 @@
         <DataGrid x:Name="dgLessons" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Óra" Binding="{Binding LessonNum}" />
-                <DataGridTextColumn Header="Kezdete" Binding="{Binding LessonStart}" />
-                <DataGridTextColumn Header="Vége" Binding="{Binding LessonEnd}" />
+                <DataGridTextColumn Header="Kezdete" Binding="{Binding LessonStart, StringFormat=hh\\:mm}" />
+                <DataGridTextColumn Header="Vége" Binding="{Binding LessonEnd, StringFormat=hh\\:mm}" />
                 <DataGridTextColumn Header="Osztály" Binding="{Binding Class}" />
                 <DataGridTextColumn Header="Tantárgy" Binding="{Binding Subject}" />
                 <DataGridTextColumn Header="Tanár" Binding="{Binding Teacher}" />
                 <DataGridTextColumn Header="Téma" Binding="{Binding Topic}" />
-                <DataGridTemplateColumn Header="Naplózás">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Naplózás"
-                                Click="btnLog_Click"
-                                Tag="{Binding}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

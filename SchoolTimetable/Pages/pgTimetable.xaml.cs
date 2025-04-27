@@ -42,6 +42,10 @@ namespace SchoolTimetable.Pages
         private void getList()
         {
             var datetime = dpDate.SelectedDate;
+            if (datetime == null)
+            {
+                return;
+            }
             var date = datetime.Value.ToString("yyyyMMdd");
             var lessons = _context.Database.SqlQuery<LessonViewModel>(
                 @$"
@@ -85,7 +89,6 @@ namespace SchoolTimetable.Pages
                     ) TL on
                         TL.SubjectId = LL.SubjectId
                         and TL.ClassId = LL.ClassId
-                        and TL.DayNum = datepart(dw, LL.Date)
                         and TL.LessonNum = LL.LessonNum
                 ) L
                 inner join Users on L.TeacherId = Users.Id

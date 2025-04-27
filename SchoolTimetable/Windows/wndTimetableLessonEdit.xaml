@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         xmlns:customName="wpftool"
         mc:Ignorable="d"
-        Title="wndTimetableLessonEdit" Height="450" Width="800">
+        Title="Órarend módosítása" Height="450" Width="800">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="10">
             <Label>Osztály</Label>
             <ComboBox />
             <Label>Tantárgy</Label>

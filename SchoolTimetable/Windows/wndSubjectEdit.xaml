@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="wndSubjectEdit" Height="450" Width="800">
+        Title="Tantárgy módosítása" Height="450" Width="800">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="10">
             <Label>Név</Label>
             <TextBox></TextBox>
             <Button Click="btnSave_Click">Mentés</Button>

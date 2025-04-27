@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
         Title="Bejelentkezés" Height="450" Width="800">
-    <StackPanel>
+    <StackPanel Margin="10">
         <Label>Felhasználónév</Label>
         <TextBox x:Name="tbUsername"/>
         <Label>Jelszó</Label>
-        <TextBox x:Name="tbPassword"/>
+        <PasswordBox x:Name="pbPassword"/>
         <Button Click="btnLogin_Click">Bejelentkezés</Button>
     </StackPanel>
 </Window>

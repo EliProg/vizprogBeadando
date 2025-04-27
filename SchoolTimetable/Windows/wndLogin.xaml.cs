@@ -20,26 +20,26 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLogin : Window
     {
+        TimetableContext _context;
+
         public wndLogin()
         {
             InitializeComponent();
+            _context = new TimetableContext();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            using (TimetableContext _context = new())
+            var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(pbPassword.Password, user.PasswordHash))
             {
-                var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text);
-                if (user == null || !BCrypt.Net.BCrypt.Verify(tbPassword.Text, user.PasswordHash))
-                {
-                    MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    var w = new wndMain(user);
-                    w.Show();
-                    this.Close();
-                }
+                MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                var w = new wndMain(user);
+                w.Show();
+                this.Close();
             }
         }
     }

@@ -68,7 +68,7 @@ namespace SchoolTimetable.Windows
 
         private void miTimetables_Click(object sender, RoutedEventArgs e)
         {
-            fmMain.Navigate(new pgTimetableSearch());
+            fmMain.Navigate(new pgTimetableSearch(1));
         }
 
         private void miMyTimetable_Click(object sender, RoutedEventArgs e)
