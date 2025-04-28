@@ -55,6 +55,8 @@ namespace SchoolTimetable.Pages
             cbClass.ItemsSource = classes;
             cbClass.SelectedValuePath = "Id";
             cbClass.DisplayMemberPath = "Name";
+
+            dpDate.SelectedDate = DateTime.Today;
         }
 
         private void getList()
@@ -148,9 +150,14 @@ namespace SchoolTimetable.Pages
             getList();
         }
 
-        private void btnLog_Click(object sender, RoutedEventArgs e)
+        private void btnPrev_Click(object sender, RoutedEventArgs e)
         {
+            dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(-1);
+        }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(1);
         }
     }
 }

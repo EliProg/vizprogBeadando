@@ -11,6 +11,8 @@
         <StackPanel Margin="0,0,10,0">
             <Label>Dátum</Label>
             <DatePicker x:Name="dpDate" SelectedDateChanged="dpDate_SelectedDateChanged"/>
+            <Button Click="btnPrev_Click">Előző</Button>
+            <Button Click="btnNext_Click">Következő</Button>
         </StackPanel>
         <DataGrid x:Name="dgLessons" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>

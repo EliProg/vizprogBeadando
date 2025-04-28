@@ -37,6 +37,7 @@ namespace SchoolTimetable.Pages
             _context = new TimetableContext();
             this.userId = userId;
             this.schoolYearId = schoolYearId;
+            dpDate.SelectedDate = DateTime.Today;
         }
 
         private void getList()
@@ -111,6 +112,16 @@ namespace SchoolTimetable.Pages
             var window = new wndLessonLog(lesson);
             window.ShowDialog();
             getList();
+        }
+
+        private void btnPrev_Click(object sender, RoutedEventArgs e)
+        {
+            dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(-1);
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(1);
         }
     }
 }
