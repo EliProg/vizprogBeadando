@@ -5,17 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Felhasználó módosítása" Height="450" Width="800">
+        Title="Felhasználó módosítása" Width="300" SizeToContent="Height">
     <Grid>
-        <StackPanel Margin="10">
+        <StackPanel Margin="20">
             <Label>Név</Label>
-            <TextBox x:Name="name"></TextBox>
+            <TextBox x:Name="tbName"/>
             <Label>Felhasználónév</Label>
-            <TextBox></TextBox>
+            <TextBox/>
             <Label>Jelszó</Label>
-            <TextBox></TextBox>
-            <Label>Admin</Label>
-            <CheckBox></CheckBox>
+            <TextBox/>
+            <CheckBox Content="Admin"/>
             <Button Click="btnSave_Click">Mentés</Button>
             <Button Click="btnCancel_Click">Mégse</Button>
         </StackPanel>

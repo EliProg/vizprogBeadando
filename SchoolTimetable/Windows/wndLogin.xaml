@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Bejelentkezés" Height="450" Width="800">
-    <StackPanel Margin="10">
+        Title="Bejelentkezés" Width="300" SizeToContent="Height">
+    <StackPanel Margin="20">
         <Label>Felhasználónév</Label>
         <TextBox x:Name="tbUsername"/>
+        <Separator Opacity="0" Height="20"/>
         <Label>Jelszó</Label>
         <PasswordBox x:Name="pbPassword"/>
+        <Separator Opacity="0" Height="20"/>
         <Button Click="btnLogin_Click">Bejelentkezés</Button>
     </StackPanel>
 </Window>

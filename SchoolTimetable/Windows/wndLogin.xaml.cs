@@ -20,7 +20,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLogin : Window
     {
-        TimetableContext _context;
+        private readonly TimetableContext _context;
 
         public wndLogin()
         {
@@ -37,8 +37,11 @@ namespace SchoolTimetable.Windows
             }
             else
             {
-                var w = new wndMain(user);
-                w.Show();
+                Session.user = user;
+                Session.schoolYear = _context.enSchoolYears.OrderByDescending(y => y.StartDate).First();
+                var window = new wndMain();
+                window.Show();
+                Application.Current.MainWindow = window;
                 this.Close();
             }
         }

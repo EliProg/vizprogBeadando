@@ -6,23 +6,23 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         xmlns:customName="wpftool"
         mc:Ignorable="d"
-        Title="Órarend módosítása" Height="450" Width="800">
+        Title="Órarend módosítása" Width="300" SizeToContent="Height">
     <Grid>
-        <StackPanel Margin="10">
+        <StackPanel Margin="20">
             <Label>Osztály</Label>
-            <ComboBox />
+            <ComboBox/>
             <Label>Tantárgy</Label>
-            <ComboBox />
+            <ComboBox/>
             <Label>Tanár</Label>
-            <ComboBox />
+            <ComboBox/>
             <Label>Hét napja</Label>
-            <ComboBox />
+            <ComboBox/>
             <Label>Óra</Label>
-            <ComboBox />
+            <ComboBox/>
             <Label>Érvényesség kezdete</Label>
-            <DatePicker></DatePicker>
+            <DatePicker/>
             <Label>Érvényesség vége</Label>
-            <DatePicker></DatePicker>
+            <DatePicker/>
             <Button Click="btnSave_Click">Mentés</Button>
             <Button Click="btnCancel_Click">Mégse</Button>
         </StackPanel>

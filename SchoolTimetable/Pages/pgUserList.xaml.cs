@@ -24,14 +24,14 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgUserList : Page
     {
-        TimetableContext _context;
+        private readonly TimetableContext _context;
 
         private class UserViewModel
         {
             public int Id { get; set; }
-            public string Username { get; set; }
+            public required string Username { get; set; }
             public string? EduId { get; set; }
-            public string Name { get; set; }
+            public required string Name { get; set; }
             public bool Admin { get; set; }
         }
 

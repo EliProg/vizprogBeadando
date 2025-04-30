@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Tanóra naplózása" Height="450" Width="800">
-    <StackPanel Margin="10">
+        Title="Tanóra naplózása" Width="300" SizeToContent="Height">
+    <StackPanel Margin="20">
         <Label>Dátum</Label>
         <TextBox x:Name="tbDate" IsReadOnly="True"/>
         <Label>Óra</Label>

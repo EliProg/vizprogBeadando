@@ -10,11 +10,11 @@ namespace SchoolTimetable.Helpers
     {
         public int? LoggedLessonId { get; set; }
         public string? Topic { get; set; }
-        public string Class { get; set; }
+        public required string Class { get; set; }
         public int ClassId { get; set; }
-        public string Teacher { get; set; }
+        public required string Teacher { get; set; }
         public int TeacherId { get; set; }
-        public string Subject { get; set; }
+        public required string Subject { get; set; }
         public int SubjectId { get; set; }
         public DateTime Date { get; set; }
         public byte LessonNum { get; set; }

@@ -23,12 +23,15 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLessonLog : Window
     {
-        TimetableContext _context;
-        LessonViewModel lesson;
+        private readonly TimetableContext _context;
+        private readonly LessonViewModel lesson;
 
         public wndLessonLog(LessonViewModel lesson)
         {
             InitializeComponent();
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             _context = new TimetableContext();
             this.lesson = lesson;
             tbClass.Text = lesson.Class;

@@ -24,22 +24,20 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetableSearch : Page
     {
-        TimetableContext _context;
+        private readonly TimetableContext _context;
 
-        int schoolYearId;
-
-        public pgTimetableSearch(int schoolYearId)
+        public pgTimetableSearch()
         {
             InitializeComponent();
             _context = new TimetableContext();
-            this.schoolYearId = schoolYearId;
 
             var teachers = (
                 from t in _context.enUsers
+                orderby t.Name
                 select new
                 {
-                    Id = t.Id,
-                    Name = t.Name
+                    t.Id,
+                    t.Name
                 }).ToList();
             cbTeacher.ItemsSource = teachers;
             cbTeacher.SelectedValuePath = "Id";
@@ -47,16 +45,19 @@ namespace SchoolTimetable.Pages
 
             var classes = (
                 from c in _context.enClasses
+                orderby c.Name
                 select new
                 {
-                    Id = c.Id,
-                    Name = c.Name
+                    c.Id,
+                    c.Name
                 }).ToList();
             cbClass.ItemsSource = classes;
             cbClass.SelectedValuePath = "Id";
             cbClass.DisplayMemberPath = "Name";
 
             dpDate.SelectedDate = DateTime.Today;
+            dpDate.DisplayDateStart = Session.schoolYear.StartDate;
+            dpDate.DisplayDateEnd = Session.schoolYear.EndDate;
         }
 
         private void getList()
@@ -94,13 +95,13 @@ namespace SchoolTimetable.Pages
                     from (
                         select *
                         from LoggedLessons
-                        where LoggedLessons.SchoolYearId = {schoolYearId}
+                        where LoggedLessons.SchoolYearId = {Session.schoolYear.Id}
                         and LoggedLessons.Date = {date}
                     ) LL
                     full outer join (
                         select *
                         from TimetableLessons
-                        where TimetableLessons.SchoolYearId = {schoolYearId}
+                        where TimetableLessons.SchoolYearId = {Session.schoolYear.Id}
                         and TimetableLessons.DayNum = datepart(dw, {date})
                         and TimetableLessons.StartDate <= {date}
                         and TimetableLessons.EndDate >= {date}

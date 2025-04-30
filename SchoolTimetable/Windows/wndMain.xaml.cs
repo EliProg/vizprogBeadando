@@ -19,25 +19,24 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndMain : Window
     {
-        int userId;
-
-        public wndMain(enUser user)
+        public wndMain()
         {
             InitializeComponent();
-            userId = user.Id;
-            miUser.Header = $"Bejelentkezett: {user.Username}";
-            if (user.Admin)
+
+            miUser.Header = $"Bejelentkezett: {Session.user.Name}";
+            if (Session.user.Admin)
             {
                 miAdmin.Visibility = Visibility.Visible;
                 miTimetables.Visibility = Visibility.Visible;
             }
-            fmMain.Navigate(new pgTimetable(userId, 1));
+            fmMain.Navigate(new pgTimetable());
         }
 
         private void miLogout_Click(object sender, RoutedEventArgs e)
         {
-            var w = new wndLogin();
-            w.Show();
+            Session.clear();
+            var window = new wndLogin();
+            window.Show();
             this.Close();
         }
 
@@ -63,17 +62,22 @@ namespace SchoolTimetable.Windows
 
         private void miSchoolYears_Click(object sender, RoutedEventArgs e)
         {
-            //fmMain.Navigate(new pgSubjectList());
+            fmMain.Navigate(new pgSchoolYearList());
+        }
+
+        private void miEvents_Click(object sender, RoutedEventArgs e)
+        {
+            fmMain.Navigate(new pgEventList());
         }
 
         private void miTimetables_Click(object sender, RoutedEventArgs e)
         {
-            fmMain.Navigate(new pgTimetableSearch(1));
+            fmMain.Navigate(new pgTimetableSearch());
         }
 
         private void miMyTimetable_Click(object sender, RoutedEventArgs e)
         {
-            fmMain.Navigate(new pgTimetable(userId, 1));
+            fmMain.Navigate(new pgTimetable());
         }
     }
 }

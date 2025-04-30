@@ -11,30 +11,39 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchoolTimetable.Windows
+namespace SchoolTimetable.Pages
 {
     /// <summary>
-    /// Interaction logic for wndTimetableLessonEdit.xaml
+    /// Interaction logic for pgEventList.xaml
     /// </summary>
-    public partial class wndTimetableLessonEdit : Window
+    public partial class pgEventList : Page
     {
-        public wndTimetableLessonEdit()
+        private void getList()
+        {
+
+        }
+
+        public pgEventList()
         {
             InitializeComponent();
-            Owner = Application.Current.MainWindow;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
