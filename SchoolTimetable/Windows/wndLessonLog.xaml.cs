@@ -23,15 +23,12 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLessonLog : Window
     {
-        private readonly TimetableContext _context;
-        private readonly LessonViewModel lesson;
+        TimetableContext _context;
+        LessonViewModel lesson;
 
         public wndLessonLog(LessonViewModel lesson)
         {
             InitializeComponent();
-            Owner = Application.Current.MainWindow;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
             _context = new TimetableContext();
             this.lesson = lesson;
             tbClass.Text = lesson.Class;
@@ -39,7 +36,6 @@ namespace SchoolTimetable.Windows
             tbLessonNum.Text = lesson.LessonNum.ToString();
             tbSubject.Text = lesson.Subject;
             tbTeacher.Text = lesson.Teacher;
-            tbTopic.Text = lesson.Topic;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

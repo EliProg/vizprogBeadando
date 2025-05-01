@@ -20,7 +20,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLogin : Window
     {
-        private readonly TimetableContext _context;
+        TimetableContext _context;
 
         public wndLogin()
         {
@@ -31,17 +31,14 @@ namespace SchoolTimetable.Windows
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(pbPassword.Password, user.PasswordHash))
+            if (user == null )
             {
                 MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                Session.user = user;
-                Session.schoolYear = _context.enSchoolYears.OrderByDescending(y => y.StartDate).First();
-                var window = new wndMain();
-                window.Show();
-                Application.Current.MainWindow = window;
+                var w = new wndMain(user);
+                w.Show();
                 this.Close();
             }
         }

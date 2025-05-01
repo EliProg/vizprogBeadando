@@ -18,7 +18,7 @@
                 <MenuItem Header="Felhasználók" Click="miUsers_Click"/>
                 <MenuItem Header="Tantárgyak" Click="miSubjects_Click"/>
                 <MenuItem Header="Tanévek" Click="miSchoolYears_Click"/>
-                <MenuItem Header="Eseménynapló" Click="miEvents_Click"/>
+                <MenuItem Header="Osztályok" Click="miClasses_Click"/>
             </MenuItem>
             <MenuItem x:Name="miTimetables" Visibility="Collapsed" Click="miTimetables_Click" Header="Órarendek"/>
             <MenuItem x:Name="miMyTimetable" Click="miMyTimetable_Click" Header="Saját órarend"/>
@@ -27,6 +27,6 @@
                 <MenuItem Header="Bezárás" Click="miClose_Click"/>
             </MenuItem>
         </Menu>
-        <Frame Name="fmMain" Margin="20" NavigationUIVisibility="Hidden"/>
+        <Frame Name="fmMain" Margin="10" NavigationUIVisibility="Hidden"/>
     </DockPanel>
 </Window>

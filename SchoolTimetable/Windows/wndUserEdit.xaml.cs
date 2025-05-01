@@ -18,27 +18,47 @@ using System.Windows.Shapes;
 namespace SchoolTimetable.Windows
 {
     /// <summary>
-    /// Interaction logic for wndUserEdit.xaml
+    /// Interaction logic for TeacherEditWindow.xaml
     /// </summary>
     public partial class wndUserEdit : Window
     {
-        private readonly TimetableContext _context;
-        private readonly enUser user;
+        TimetableContext _context;
+
+        enUser user;
 
         public wndUserEdit(int id)
         {
             InitializeComponent();
-            Owner = Application.Current.MainWindow;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
             _context = new TimetableContext();
-            user = _context.enUsers.Find(id);
-            tbName.Text = user.Name;
+            if (id != 0)
+            {
+                user = _context.enUsers.SingleOrDefault(b => b.Id == id);
+            }
+            else
+            {
+                user = new enUser();
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            user.Name = tbName.Text;
+            
+                user.Name = name.Text;
+                user.Username = userName.Text;
+                user.PasswordHash = passwd.Text;
+            if (admin.IsChecked == true)
+            {
+                user.Admin = true;
+            }
+            else
+            {
+                user.Admin = false;
+            }
+            user.SchoolYearsActive = 1;
+            if (user.Id == 0)
+            {
+                _context.enUsers.Add(user);
+            }
             _context.SaveChanges();
             this.Close();
         }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Tantárgy módosítása" Width="300" SizeToContent="Height">
+        Title="Tantárgy módosítása" Height="450" Width="800">
     <Grid>
-        <StackPanel Margin="20">
+        <StackPanel Margin="10">
             <Label>Név</Label>
-            <TextBox/>
+            <TextBox x:Name="name"></TextBox>
             <Button Click="btnSave_Click">Mentés</Button>
             <Button Click="btnCancel_Click">Mégse</Button>
         </StackPanel>
