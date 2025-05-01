@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using cnTimetable;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace SchoolTimetable
 {
     internal static class Session
     {
+        private static TimetableContext _context = new();
         public static enUser? user;
         public static enSchoolYear? schoolYear;
 
@@ -17,6 +19,11 @@ namespace SchoolTimetable
         {
             user = null;
             schoolYear = null;
+        }
+
+        public static void updateSchoolYear()
+        {
+            schoolYear = _context.enSchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).First();
         }
     }
 }
