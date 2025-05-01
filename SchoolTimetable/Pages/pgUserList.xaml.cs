@@ -24,14 +24,14 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgUserList : Page
     {
-        private readonly TimetableContext _context;
+        TimetableContext _context;
 
         private class UserViewModel
         {
             public int Id { get; set; }
-            public required string Username { get; set; }
+            public string Username { get; set; }
             public string? EduId { get; set; }
-            public required string Name { get; set; }
+            public string Name { get; set; }
             public bool Admin { get; set; }
         }
 
@@ -58,7 +58,8 @@ namespace SchoolTimetable.Pages
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = new wndUserEdit(0);
+            window.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -80,13 +81,16 @@ namespace SchoolTimetable.Pages
             // Get the row's bound data (UserViewModel) from the button's Tag
             var user = button?.Tag as UserViewModel;
 
-            var userToDelete = _context.enUsers.FirstOrDefault(u => u.Id == user.Id);
-            _context.enUsers.Remove(userToDelete);
-            _context.SaveChanges();
-
-            MessageBox.Show("User deleted successfully.");
-
-            // MessageBox.Show("Törlés");
+            if (user != null)
+            {
+                var userToDelete = _context.enUsers.FirstOrDefault(u => u.Id == user.Id);
+                if (userToDelete != null)
+                {
+                    _context.enUsers.Remove(userToDelete);
+                    _context.SaveChanges();
+                    MessageBox.Show("User deleted successfully.");
+                }
+            }
         }
     }
 }

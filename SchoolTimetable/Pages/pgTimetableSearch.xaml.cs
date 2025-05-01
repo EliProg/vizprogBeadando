@@ -24,20 +24,22 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetableSearch : Page
     {
-        private readonly TimetableContext _context;
+        TimetableContext _context;
 
-        public pgTimetableSearch()
+        int schoolYearId;
+
+        public pgTimetableSearch(int schoolYearId)
         {
             InitializeComponent();
             _context = new TimetableContext();
+            this.schoolYearId = schoolYearId;
 
             var teachers = (
                 from t in _context.enUsers
-                orderby t.Name
                 select new
                 {
-                    t.Id,
-                    t.Name
+                    Id = t.Id,
+                    Name = t.Name
                 }).ToList();
             cbTeacher.ItemsSource = teachers;
             cbTeacher.SelectedValuePath = "Id";
@@ -45,19 +47,16 @@ namespace SchoolTimetable.Pages
 
             var classes = (
                 from c in _context.enClasses
-                orderby c.Name
                 select new
                 {
-                    c.Id,
-                    c.Name
+                    Id = c.Id,
+                    Name = c.Name
                 }).ToList();
             cbClass.ItemsSource = classes;
             cbClass.SelectedValuePath = "Id";
             cbClass.DisplayMemberPath = "Name";
 
             dpDate.SelectedDate = DateTime.Today;
-            dpDate.DisplayDateStart = Session.schoolYear.StartDate;
-            dpDate.DisplayDateEnd = Session.schoolYear.EndDate;
         }
 
         private void getList()
@@ -73,7 +72,7 @@ namespace SchoolTimetable.Pages
                 set datefirst 1;
                 select
                     L.LoggedLessonId,
-                    L.Topic,
+                    
                     cast({date} as datetime) Date,
                     Users.Name Teacher,
                     Users.Id TeacherId,
@@ -87,7 +86,7 @@ namespace SchoolTimetable.Pages
                 from (
                     select
                         LL.Id LoggedLessonId,
-                        LL.Topic,
+                       
                         coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
                         coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
                         coalesce(LL.ClassId, TL.ClassId) ClassId,
@@ -95,13 +94,13 @@ namespace SchoolTimetable.Pages
                     from (
                         select *
                         from LoggedLessons
-                        where LoggedLessons.SchoolYearId = {Session.schoolYear.Id}
+                        where LoggedLessons.SchoolYearId = {schoolYearId}
                         and LoggedLessons.Date = {date}
                     ) LL
                     full outer join (
                         select *
                         from TimetableLessons
-                        where TimetableLessons.SchoolYearId = {Session.schoolYear.Id}
+                        where TimetableLessons.SchoolYearId = {schoolYearId}
                         and TimetableLessons.DayNum = datepart(dw, {date})
                         and TimetableLessons.StartDate <= {date}
                         and TimetableLessons.EndDate >= {date}

@@ -18,7 +18,6 @@ using System.Windows.Shapes;
 using SchoolTimetable.Helpers;
 using System.Collections;
 using SchoolTimetable.Windows;
-using System.Globalization;
 
 namespace SchoolTimetable.Pages
 {
@@ -27,16 +26,18 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetable : Page
     {
-        private readonly TimetableContext _context;
+        TimetableContext _context;
 
-        public pgTimetable()
+        int userId;
+        int schoolYearId;
+
+        public pgTimetable(int userId, int schoolYearId)
         {
             InitializeComponent();
             _context = new TimetableContext();
-
+            this.userId = userId;
+            this.schoolYearId = schoolYearId;
             dpDate.SelectedDate = DateTime.Today;
-            dpDate.DisplayDateStart = Session.schoolYear.StartDate;
-            dpDate.DisplayDateEnd = Session.schoolYear.EndDate;
         }
 
         private void getList()
@@ -52,7 +53,6 @@ namespace SchoolTimetable.Pages
                 set datefirst 1;
                 select
                     L.LoggedLessonId,
-                    L.Topic,
                     cast({date} as datetime) Date,
                     Users.Name Teacher,
                     Users.Id TeacherId,
@@ -66,7 +66,6 @@ namespace SchoolTimetable.Pages
                 from (
                     select
                         LL.Id LoggedLessonId,
-                        LL.Topic,
                         coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
                         coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
                         coalesce(LL.ClassId, TL.ClassId) ClassId,
@@ -74,15 +73,15 @@ namespace SchoolTimetable.Pages
                     from (
                         select *
                         from LoggedLessons
-                        where LoggedLessons.SchoolYearId = {Session.schoolYear.Id}
-                        and LoggedLessons.TeacherId = {Session.user.Id}
+                        where LoggedLessons.SchoolYearId = {schoolYearId}
+                        and LoggedLessons.TeacherId = {userId}
                         and LoggedLessons.Date = {date}
                     ) LL
                     full outer join (
                         select *
                         from TimetableLessons
-                        where TimetableLessons.SchoolYearId = {Session.schoolYear.Id}
-                        and TimetableLessons.TeacherId = {Session.user.Id}
+                        where TimetableLessons.SchoolYearId = {schoolYearId}
+                        and TimetableLessons.TeacherId = {userId}
                         and TimetableLessons.DayNum = datepart(dw, {date})
                         and TimetableLessons.StartDate <= {date}
                         and TimetableLessons.EndDate >= {date}
