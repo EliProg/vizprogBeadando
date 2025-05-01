@@ -1,4 +1,4 @@
-USE [VizProgDB]
+USE [SchoolTimetable]
 GO
 SET IDENTITY_INSERT [dbo].[LessonSchedules] ON 
 GO
@@ -8,7 +8,7 @@ SET IDENTITY_INSERT [dbo].[LessonSchedules] OFF
 GO
 SET IDENTITY_INSERT [dbo].[SchoolYears] ON 
 GO
-INSERT [dbo].[SchoolYears] ([Id], [Name], [StartDate], [EndDate]) VALUES (1, N'2024-2025', CAST(N'2025-04-21T00:00:00.0000000' AS DateTime2), CAST(N'2025-06-01T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[SchoolYears] ([Id], [Name], [StartDate], [EndDate], [Active]) VALUES (1, N'2024-2025', CAST(N'2025-04-21T00:00:00.0000000' AS DateTime2), CAST(N'2025-06-01T00:00:00.0000000' AS DateTime2), 1)
 GO
 SET IDENTITY_INSERT [dbo].[SchoolYears] OFF
 GO
