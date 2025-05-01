@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using cnTimetable;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace SchoolTimetable.Windows
 {
     /// <summary>
     /// Interaction logic for wndTimetableLessonEdit.xaml
     /// </summary>
-    public partial class wndTimetableLessonEdit : Window
+    public partial class wndTimetableLessonEdit : FluentWindow
     {
+        private readonly TimetableContext _context;
+        private readonly enTimetableLesson lesson;
+
         public wndTimetableLessonEdit()
         {
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+            _context = new TimetableContext();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

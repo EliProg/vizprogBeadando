@@ -4,15 +4,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SchoolTimetable.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="pgTimetable">
     <DockPanel>
-        <StackPanel Margin="0,0,20,0">
+        <StackPanel Margin="0,0,20,0" Width="250">
             <Label>Dátum</Label>
             <DatePicker x:Name="dpDate" SelectedDateChanged="dpDate_SelectedDateChanged"/>
-            <Button Click="btnPrev_Click">Előző</Button>
-            <Button Click="btnNext_Click">Következő</Button>
+            <Separator Opacity="0" Height="10"/>
+            <DockPanel>
+                <Button Click="btnPrev_Click" Padding="8">
+                    <ui:SymbolIcon Symbol="ArrowLeft12"/>
+                </Button>
+                <Separator Opacity="0" Width="10"/>
+                <Button Click="btnNext_Click" Padding="8">
+                    <ui:SymbolIcon Symbol="ArrowRight12"/>
+                </Button>
+            </DockPanel>
         </StackPanel>
         <DataGrid x:Name="dgLessons" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>

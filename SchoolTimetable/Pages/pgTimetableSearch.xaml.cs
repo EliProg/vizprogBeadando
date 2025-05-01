@@ -1,7 +1,6 @@
 ﻿using cnTimetable;
 using Microsoft.EntityFrameworkCore;
-using SchoolTimetable.Helpers;
-using SchoolTimetable.Windows;
+using SchoolTimetable.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,9 +38,11 @@ namespace SchoolTimetable.Pages
                     t.Id,
                     t.Name
                 }).ToList();
+            teachers.Insert(0, new { Id = -1, Name = "Minden" });
             cbTeacher.ItemsSource = teachers;
             cbTeacher.SelectedValuePath = "Id";
             cbTeacher.DisplayMemberPath = "Name";
+            cbTeacher.SelectedIndex = 0;
 
             var classes = (
                 from c in _context.enClasses
@@ -51,9 +52,11 @@ namespace SchoolTimetable.Pages
                     c.Id,
                     c.Name
                 }).ToList();
+            classes.Insert(0, new { Id = -1, Name = "Minden" });
             cbClass.ItemsSource = classes;
             cbClass.SelectedValuePath = "Id";
             cbClass.DisplayMemberPath = "Name";
+            cbClass.SelectedIndex = 0;
 
             dpDate.SelectedDate = DateTime.Today;
             dpDate.DisplayDateStart = Session.schoolYear.StartDate;
@@ -68,10 +71,11 @@ namespace SchoolTimetable.Pages
                 return;
             }
             var date = datetime.Value.ToString("yyyyMMdd");
-            var lessons = _context.Database.SqlQuery<LessonViewModel>(
+            var lessons = _context.Database.SqlQuery<vmLesson>(
                 @$"
                 set datefirst 1;
                 select
+                    L.SchoolYearId,
                     L.LoggedLessonId,
                     L.Topic,
                     cast({date} as datetime) Date,
@@ -88,6 +92,7 @@ namespace SchoolTimetable.Pages
                     select
                         LL.Id LoggedLessonId,
                         LL.Topic,
+                        coalesce(LL.SchoolYearId, TL.SchoolYearId) SchoolYearId,
                         coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
                         coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
                         coalesce(LL.ClassId, TL.ClassId) ClassId,
@@ -114,12 +119,13 @@ namespace SchoolTimetable.Pages
                 inner join Subjects on L.SubjectId = Subjects.Id
                 inner join Classes on L.ClassId = Classes.Id
                 inner join LessonSchedules on L.LessonNum = LessonSchedules.LessonNum
+                order by LessonSchedules.LessonNum
             ").AsEnumerable();
-            if (cbClass.SelectedValue != null)
+            if (cbClass.SelectedIndex != 0)
             {
                 lessons = lessons.Where(l => l.ClassId == int.Parse(cbClass.SelectedValue.ToString()));
             }
-            if (cbTeacher.SelectedValue != null)
+            if (cbTeacher.SelectedIndex != 0)
             {
                 lessons = lessons.Where(l => l.TeacherId == int.Parse(cbTeacher.SelectedValue.ToString()));
             }
@@ -133,21 +139,11 @@ namespace SchoolTimetable.Pages
 
         private void cbTeacher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbTeacher.SelectedValue == null)
-            {
-                return;
-            }
-            cbClass.SelectedItem = null;
             getList();
         }
 
         private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbClass.SelectedValue == null)
-            {
-                return;
-            }
-            cbTeacher.SelectedItem = null;
             getList();
         }
 

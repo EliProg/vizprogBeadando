@@ -1,4 +1,4 @@
-﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.wndSubjectEdit"
+﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.wndSchoolYearEdit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,20 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Tantárgy módosítása" Width="300" SizeToContent="Height">
+        Title="Tanév módosítása" Width="300" SizeToContent="Height">
     <StackPanel>
-        <ui:TitleBar Title="Tantárgy módosítása"/>
+        <ui:TitleBar Title="Tanév módosítása"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
             <TextBox x:Name="tbName"/>
+            <Separator Opacity="0" Height="10"/>
+            <Label>Kezdete</Label>
+            <DatePicker x:Name="dpStart"/>
+            <Separator Opacity="0" Height="10"/>
+            <Label>Vége</Label>
+            <DatePicker x:Name="dpEnd"/>
+            <Separator Opacity="0" Height="10"/>
+            <CheckBox x:Name="cbActive" Content="Aktív"/>
             <Separator Opacity="0" Height="10"/>
             <DockPanel>
                 <Button Click="btnSave_Click">Mentés</Button>

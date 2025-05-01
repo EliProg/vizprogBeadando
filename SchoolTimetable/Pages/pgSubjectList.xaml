@@ -11,20 +11,16 @@
         <DockPanel DockPanel.Dock="Top" Margin="0,0,0,20">
             <Button HorizontalAlignment="Left" Click="btnCreate_Click">Új</Button>
         </DockPanel>
-        <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid x:Name="dgSubjects" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Név" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Oktatási azonosító" Binding="{Binding EduId}"/>
-                <DataGridTextColumn Header="Felhasználónév" Binding="{Binding Username}"/>
-                <DataGridCheckBoxColumn Header="Admin" Binding="{Binding Admin}"/>
 
-                <!-- Add Button Column -->
                 <DataGridTemplateColumn Header="Szerkesztés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Szerkesztés"
-                                Click="btnEdit_Click"
-                                Tag="{Binding}"/>
+                            Click="btnEdit_Click"
+                            Tag="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -32,8 +28,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Törlés"
-                                Click="btnDelete_Click"
-                                Tag="{Binding}"/>
+                            Click="btnDelete_Click"
+                            Tag="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

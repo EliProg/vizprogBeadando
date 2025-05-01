@@ -1,22 +1,31 @@
-﻿<Window x:Class="SchoolTimetable.Windows.wndUserEdit"
+﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.wndUserEdit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Felhasználó módosítása" Width="300" SizeToContent="Height">
-    <Grid>
+        Title="Felhasználó módosítása" Width="300" SizeToContent="Height" ResizeMode="NoResize">
+    <StackPanel>
+        <ui:TitleBar x:Name="titleBar" Title="Felhasználó módosítása" />
         <StackPanel Margin="20">
             <Label>Név</Label>
             <TextBox x:Name="tbName"/>
+            <Separator Opacity="0" Height="10"/>
             <Label>Felhasználónév</Label>
-            <TextBox/>
+            <TextBox x:Name="tbUsername"/>
+            <Separator Opacity="0" Height="10"/>
             <Label>Jelszó</Label>
-            <TextBox/>
-            <CheckBox Content="Admin"/>
-            <Button Click="btnSave_Click">Mentés</Button>
-            <Button Click="btnCancel_Click">Mégse</Button>
+            <PasswordBox x:Name="pbPassword" PasswordChar="●"/>
+            <Separator Opacity="0" Height="10"/>
+            <CheckBox x:Name="cbAdmin" Content="Admin"/>
+            <Separator Opacity="0" Height="10"/>
+            <DockPanel>
+                <Button x:Name="btnSave" Click="btnSave_Click">Mentés</Button>
+                <Separator Opacity="0" Width="10"/>
+                <Button Click="btnCancel_Click">Mégse</Button>
+            </DockPanel>
         </StackPanel>
-    </Grid>
-</Window>
+    </StackPanel>
+</ui:FluentWindow>

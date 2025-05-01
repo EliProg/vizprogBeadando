@@ -1,25 +1,35 @@
-﻿<Window x:Class="SchoolTimetable.Windows.wndLessonLog"
+﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.wndLessonLog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
         Title="Tanóra naplózása" Width="300" SizeToContent="Height">
     <StackPanel Margin="20">
         <Label>Dátum</Label>
         <TextBox x:Name="tbDate" IsReadOnly="True"/>
+        <Separator Opacity="0" Height="10"/>
         <Label>Óra</Label>
         <TextBox x:Name="tbLessonNum" IsReadOnly="True"/>
+        <Separator Opacity="0" Height="10"/>
         <Label>Osztály</Label>
         <TextBox x:Name="tbClass" IsReadOnly="True"/>
+        <Separator Opacity="0" Height="10"/>
         <Label>Tantárgy</Label>
         <TextBox x:Name="tbSubject" IsReadOnly="True"/>
+        <Separator Opacity="0" Height="10"/>
         <Label>Tanár</Label>
         <TextBox x:Name="tbTeacher" IsReadOnly="True"/>
+        <Separator Opacity="0" Height="10"/>
         <Label>Téma</Label>
         <TextBox x:Name="tbTopic"/>
-        <Button Click="btnSave_Click">Mentés</Button>
-        <Button Click="btnCancel_Click">Mégse</Button>
+        <Separator Opacity="0" Height="10"/>
+        <DockPanel>
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Separator Opacity="0" Width="10"/>
+            <Button Click="btnCancel_Click">Mégse</Button>
+        </DockPanel>
     </StackPanel>
-</Window>
+</ui:FluentWindow>

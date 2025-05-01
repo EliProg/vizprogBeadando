@@ -13,20 +13,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 using Wpf.Ui.Controls;
 
 namespace SchoolTimetable.Windows
 {
     /// <summary>
-    /// Interaction logic for wndSubjectEdit.xaml
+    /// Interaction logic for wndSchoolYearEdit.xaml
     /// </summary>
-    public partial class wndSubjectEdit : FluentWindow
+    public partial class wndSchoolYearEdit : FluentWindow
     {
         private readonly TimetableContext _context;
-        private readonly enSubject subject;
+        private readonly enSchoolYear schoolYear;
 
-        public wndSubjectEdit(int? id)
+        public wndSchoolYearEdit(int? id)
         {
             InitializeComponent();
             Owner = Application.Current.MainWindow;
@@ -35,13 +34,16 @@ namespace SchoolTimetable.Windows
             _context = new TimetableContext();
             if (id == null)
             {
-                subject = new enSubject();
-                _context.Add(subject);
+                schoolYear = new enSchoolYear();
+                _context.Add(schoolYear);
             }
             else
             {
-                subject = _context.enSubjects.Find(id);
-                tbName.Text = subject.Name;
+                schoolYear = _context.enSchoolYears.Find(id);
+                tbName.Text = schoolYear.Name;
+                dpStart.SelectedDate = schoolYear.StartDate;
+                dpEnd.SelectedDate = schoolYear.EndDate;
+                cbActive.IsChecked = schoolYear.Active;
             }
         }
 
@@ -52,7 +54,19 @@ namespace SchoolTimetable.Windows
                 //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            subject.Name = tbName.Text;
+            if (dpStart.SelectedDate == null)
+            {
+                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (dpEnd.SelectedDate == null)
+            {
+                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            schoolYear.Name = tbName.Text;
+            schoolYear.StartDate = dpStart.SelectedDate.Value;
+            schoolYear.EndDate = dpEnd.SelectedDate.Value;
             _context.SaveChanges();
             this.DialogResult = true;
             this.Close();

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using cnTimetable;
+using Models;
+using SchoolTimetable.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +14,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using cnTimetable;
-using Microsoft.EntityFrameworkCore;
-using Models;
-using SchoolTimetable.Helpers;
+using Wpf.Ui.Controls;
+
+using MessageBox = Wpf.Ui.Controls.MessageBox;
 
 namespace SchoolTimetable.Windows
 {
     /// <summary>
     /// Interaction logic for wndLessonLog.xaml
     /// </summary>
-    public partial class wndLessonLog : Window
+    public partial class wndLessonLog : FluentWindow
     {
         private readonly TimetableContext _context;
-        private readonly LessonViewModel lesson;
+        private readonly vmLesson lesson;
 
-        public wndLessonLog(LessonViewModel lesson)
+        public wndLessonLog(vmLesson lesson)
         {
             InitializeComponent();
             Owner = Application.Current.MainWindow;
@@ -44,6 +46,11 @@ namespace SchoolTimetable.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tbTopic.Text))
+            {
+                //MessageBox.Show("Az óra témája nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (lesson.LoggedLessonId != null)
             {
                 var loggedLesson = _context.enLoggedLessons.Find(lesson.LoggedLessonId);
@@ -57,7 +64,7 @@ namespace SchoolTimetable.Windows
                     SubjectId = lesson.SubjectId,
                     TeacherId = lesson.TeacherId,
                     ClassId = lesson.ClassId,
-                    SchoolYearId = 1,
+                    SchoolYearId = lesson.SchoolYearId,
                     LessonNum = lesson.LessonNum,
                     Date = lesson.Date,
                     Topic = tbTopic.Text

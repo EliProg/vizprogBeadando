@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using cnTimetable;
+using Models;
+using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using cnTimetable;
-using Models;
-using SchoolTimetable.Windows;
 
 namespace SchoolTimetable.Pages
 {
@@ -26,27 +25,10 @@ namespace SchoolTimetable.Pages
     {
         private readonly TimetableContext _context;
 
-        private class UserViewModel
-        {
-            public int Id { get; set; }
-            public required string Username { get; set; }
-            public string? EduId { get; set; }
-            public required string Name { get; set; }
-            public bool Admin { get; set; }
-        }
-
         private void getList()
         {
-            var lekerdezes = (from s in _context.enUsers
-                              select new UserViewModel
-                              {
-                                  Id = s.Id,
-                                  Username = s.Username,
-                                  EduId = s.EduId,
-                                  Name = s.Name,
-                                  Admin = s.Admin
-                              }).ToList();
-            dgUsers.ItemsSource = lekerdezes;
+            var users = _context.enUsers.ToList();
+            dgUsers.ItemsSource = users;
         }
 
         public pgUserList()
@@ -58,35 +40,38 @@ namespace SchoolTimetable.Pages
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = new wndUserEdit(null);
+            if (window.ShowDialog() == true)
+            {
+                getList();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
-            // Get the row's bound data (UserViewModel) from the button's Tag
-            var user = button?.Tag as UserViewModel;
+            var user = button?.Tag as enUser;
             var window = new wndUserEdit(user.Id);
-            window.ShowDialog();
-            getList();
-            // MessageBox.Show($"{user.Id}");
+            if (window.ShowDialog() == true)
+            {
+                getList();
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
-            // Get the row's bound data (UserViewModel) from the button's Tag
-            var user = button?.Tag as UserViewModel;
-
-            var userToDelete = _context.enUsers.FirstOrDefault(u => u.Id == user.Id);
-            _context.enUsers.Remove(userToDelete);
+            var user = button?.Tag as enUser;
+            if (MessageBox.Show("Biztos benne, hogy törli a felhasználót?", "Felhasználó törlése",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+            _context.Attach(user);
+            _context.enUsers.Remove(user);
             _context.SaveChanges();
-
-            MessageBox.Show("User deleted successfully.");
-
-            // MessageBox.Show("Törlés");
+            MessageBox.Show("A felhasználó törlése sikerült.");
+            getList();
         }
     }
 }

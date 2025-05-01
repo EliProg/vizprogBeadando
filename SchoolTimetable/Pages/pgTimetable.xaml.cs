@@ -1,9 +1,10 @@
 ﻿using cnTimetable;
 using Microsoft.EntityFrameworkCore;
+using SchoolTimetable.ViewModels;
+using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,10 +16,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SchoolTimetable.Helpers;
-using System.Collections;
-using SchoolTimetable.Windows;
-using System.Globalization;
 
 namespace SchoolTimetable.Pages
 {
@@ -47,10 +44,11 @@ namespace SchoolTimetable.Pages
                 return;
             }
             var date = datetime.Value.ToString("yyyyMMdd");
-            var lessons = _context.Database.SqlQuery<LessonViewModel>(
+            var lessons = _context.Database.SqlQuery<vmLesson>(
                 @$"
                 set datefirst 1;
                 select
+                    L.SchoolYearId,
                     L.LoggedLessonId,
                     L.Topic,
                     cast({date} as datetime) Date,
@@ -67,6 +65,7 @@ namespace SchoolTimetable.Pages
                     select
                         LL.Id LoggedLessonId,
                         LL.Topic,
+                        coalesce(LL.SchoolYearId, TL.SchoolYearId) SchoolYearId,
                         coalesce(LL.TeacherId, TL.TeacherId) TeacherId,
                         coalesce(LL.SubjectId, TL.SubjectId) SubjectId,
                         coalesce(LL.ClassId, TL.ClassId) ClassId,
@@ -95,6 +94,7 @@ namespace SchoolTimetable.Pages
                 inner join Subjects on L.SubjectId = Subjects.Id
                 inner join Classes on L.ClassId = Classes.Id
                 inner join LessonSchedules on L.LessonNum = LessonSchedules.LessonNum
+                order by LessonSchedules.LessonNum
             ").ToList();
             dgLessons.ItemsSource = lessons;
         }
@@ -107,7 +107,7 @@ namespace SchoolTimetable.Pages
         private void btnLog_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var lesson = button?.Tag as LessonViewModel;
+            var lesson = button?.Tag as vmLesson;
             var window = new wndLessonLog(lesson);
             window.ShowDialog();
             getList();

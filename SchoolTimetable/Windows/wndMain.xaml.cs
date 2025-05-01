@@ -1,6 +1,4 @@
-﻿using cnTimetable;
-using Models;
-using SchoolTimetable.Pages;
+﻿using SchoolTimetable.Pages;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,13 +9,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace SchoolTimetable.Windows
 {
     /// <summary>
     /// Interaction logic for wndMain.xaml
     /// </summary>
-    public partial class wndMain : Window
+    public partial class wndMain : FluentWindow
     {
         public wndMain()
         {
@@ -53,6 +52,11 @@ namespace SchoolTimetable.Windows
         private void miTimetableLessons_Click(object sender, RoutedEventArgs e)
         {
             fmMain.Navigate(new pgTimetableLessonList());
+        }
+
+        private void miClasses_Click(object sender, RoutedEventArgs e)
+        {
+            fmMain.Navigate(new pgClassList());
         }
 
         private void miSubjects_Click(object sender, RoutedEventArgs e)
