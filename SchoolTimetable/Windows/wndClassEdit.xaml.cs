@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -22,7 +26,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndClassEdit : FluentWindow
     {
-        private readonly TimetableContext _context;
+        private readonly TimetableContext context;
         private readonly enClass _class;
 
         public wndClassEdit(int? id)
@@ -31,15 +35,17 @@ namespace SchoolTimetable.Windows
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            _context = new TimetableContext();
+            context = new TimetableContext();
             if (id == null)
             {
+                titleBar.Title = "Új osztály";
                 _class = new enClass();
-                _context.Add(_class);
+                context.Add(_class);
             }
             else
             {
-                _class = _context.enClasses.Find(id);
+                titleBar.Title = "Osztály módosítása";
+                _class = context.enClasses.Find(id);
                 tbName.Text = _class.Name;
             }
         }
@@ -48,11 +54,12 @@ namespace SchoolTimetable.Windows
         {
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             _class.Name = tbName.Text;
-            _context.SaveChanges();
+            context.SaveChanges();
+            Helper.Log("Update", _class);
             this.DialogResult = true;
             this.Close();
         }

@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 using Wpf.Ui.Controls;
+
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
 
 namespace SchoolTimetable.Windows
 {
@@ -23,7 +26,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndSubjectEdit : FluentWindow
     {
-        private readonly TimetableContext _context;
+        private readonly TimetableContext context;
         private readonly enSubject subject;
 
         public wndSubjectEdit(int? id)
@@ -32,15 +35,17 @@ namespace SchoolTimetable.Windows
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            _context = new TimetableContext();
+            context = new TimetableContext();
             if (id == null)
             {
+                titleBar.Title = "Új tantárgy";
                 subject = new enSubject();
-                _context.Add(subject);
+                context.Add(subject);
             }
             else
             {
-                subject = _context.enSubjects.Find(id);
+                titleBar.Title = "Tantárgy módosítása";
+                subject = context.enSubjects.Find(id);
                 tbName.Text = subject.Name;
             }
         }
@@ -49,11 +54,12 @@ namespace SchoolTimetable.Windows
         {
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             subject.Name = tbName.Text;
-            _context.SaveChanges();
+            context.SaveChanges();
+            Helper.Log("Update", subject);
             this.DialogResult = true;
             this.Close();
         }

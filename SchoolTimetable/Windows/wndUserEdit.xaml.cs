@@ -1,5 +1,7 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
+using SchoolTimetable.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -22,7 +27,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndUserEdit : FluentWindow
     {
-        private readonly TimetableContext _context;
+        private readonly TimetableContext context;
         private readonly enUser user;
 
         public wndUserEdit(int? id)
@@ -31,17 +36,17 @@ namespace SchoolTimetable.Windows
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            _context = new TimetableContext();
+            context = new TimetableContext();
             if (id == null)
             {
+                titleBar.Title = "Új felhasználó";
                 user = new enUser();
-                _context.Add(user);
-                titleBar.Title = "Felhasználó létrehozása";
-                btnSave.Content = "Létrehozás";
+                context.Add(user);
             }
             else
             {
-                user = _context.enUsers.Find(id);
+                titleBar.Title = "Felhasználó módosítása";
+                user = context.enUsers.Find(id);
                 tbName.Text = user.Name;
                 tbUsername.Text = user.Username;
                 cbAdmin.IsChecked = user.Admin;
@@ -52,12 +57,12 @@ namespace SchoolTimetable.Windows
         {
             if (string.IsNullOrWhiteSpace(user.Name))
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(user.Username))
             {
-                //MessageBox.Show("A felhasználónév megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A felhasználónév megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             user.Name = tbName.Text;
@@ -67,7 +72,8 @@ namespace SchoolTimetable.Windows
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(pbPassword.Password);
             }
-            _context.SaveChanges();
+            context.SaveChanges();
+            Helper.Log("Update", user);
             this.DialogResult = true;
             this.Close();
         }

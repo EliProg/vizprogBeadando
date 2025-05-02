@@ -11,14 +11,15 @@
         <DockPanel DockPanel.Dock="Top" Margin="0,0,0,20">
             <Button HorizontalAlignment="Left" Click="btnCreate_Click">Új</Button>
         </DockPanel>
-        <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid x:Name="dgLessons" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Név" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Oktatási azonosító" Binding="{Binding EduId}"/>
-                <DataGridTextColumn Header="Felhasználónév" Binding="{Binding Username}"/>
-                <DataGridCheckBoxColumn Header="Admin" Binding="{Binding Admin}"/>
-
-                <!-- Add Button Column -->
+                <DataGridTextColumn Header="Osztály" Binding="{Binding enClass.Name}"/>
+                <DataGridTextColumn Header="Tantárgy" Binding="{Binding enSubject.Name}"/>
+                <DataGridTextColumn Header="Tanár" Binding="{Binding enUser.Name}"/>
+                <DataGridTextColumn Header="Hét napja" Binding="{Binding DayNum}"/>
+                <DataGridTextColumn Header="Óra" Binding="{Binding LessonNum}"/>
+                <DataGridTextColumn Header="Érvényesség kezdete" Binding="{Binding StartDate, StringFormat=yyyy. MM. dd.}"/>
+                <DataGridTextColumn Header="Érvényesség vége" Binding="{Binding EndDate,StringFormat=yyyy. MM. dd.}"/>
                 <DataGridTemplateColumn Header="Szerkesztés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -37,7 +38,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -22,7 +26,7 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndSchoolYearEdit : FluentWindow
     {
-        private readonly TimetableContext _context;
+        private readonly TimetableContext context;
         private readonly enSchoolYear schoolYear;
 
         public wndSchoolYearEdit(int? id)
@@ -31,15 +35,17 @@ namespace SchoolTimetable.Windows
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            _context = new TimetableContext();
+            context = new TimetableContext();
             if (id == null)
             {
+                titleBar.Title = "Új tanév";
                 schoolYear = new enSchoolYear();
-                _context.Add(schoolYear);
+                context.Add(schoolYear);
             }
             else
             {
-                schoolYear = _context.enSchoolYears.Find(id);
+                titleBar.Title = "Tanév módosítása";
+                schoolYear = context.enSchoolYears.Find(id);
                 tbName.Text = schoolYear.Name;
                 dpStart.SelectedDate = schoolYear.StartDate;
                 dpEnd.SelectedDate = schoolYear.EndDate;
@@ -51,23 +57,25 @@ namespace SchoolTimetable.Windows
         {
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (dpStart.SelectedDate == null)
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A kezdődátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (dpEnd.SelectedDate == null)
             {
-                //MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A záródátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             schoolYear.Name = tbName.Text;
             schoolYear.StartDate = dpStart.SelectedDate.Value;
             schoolYear.EndDate = dpEnd.SelectedDate.Value;
-            _context.SaveChanges();
+            schoolYear.Active = cbActive.IsChecked == true;
+            context.SaveChanges();
+            Helper.Log("Update", schoolYear);
             this.DialogResult = true;
             this.Close();
         }

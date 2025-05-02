@@ -18,6 +18,10 @@
                     <ui:SymbolIcon Symbol="ArrowLeft12"/>
                 </Button>
                 <Separator Opacity="0" Width="10"/>
+                <Button Click="btnToday_Click" Padding="7">
+                    Mai nap
+                </Button>
+                <Separator Opacity="0" Width="10"/>
                 <Button Click="btnNext_Click" Padding="8">
                     <ui:SymbolIcon Symbol="ArrowRight12"/>
                 </Button>

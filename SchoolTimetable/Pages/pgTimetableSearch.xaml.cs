@@ -23,15 +23,14 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetableSearch : Page
     {
-        private readonly TimetableContext _context;
-
         public pgTimetableSearch()
         {
             InitializeComponent();
-            _context = new TimetableContext();
+
+            var context = new TimetableContext();
 
             var teachers = (
-                from t in _context.enUsers
+                from t in context.enUsers
                 orderby t.Name
                 select new
                 {
@@ -45,7 +44,7 @@ namespace SchoolTimetable.Pages
             cbTeacher.SelectedIndex = 0;
 
             var classes = (
-                from c in _context.enClasses
+                from c in context.enClasses
                 orderby c.Name
                 select new
                 {
@@ -71,7 +70,8 @@ namespace SchoolTimetable.Pages
                 return;
             }
             var date = datetime.Value.ToString("yyyyMMdd");
-            var lessons = _context.Database.SqlQuery<vmLesson>(
+            var context = new TimetableContext();
+            var lessons = context.Database.SqlQuery<vmLesson>(
                 @$"
                 set datefirst 1;
                 select
@@ -121,11 +121,11 @@ namespace SchoolTimetable.Pages
                 inner join LessonSchedules on L.LessonNum = LessonSchedules.LessonNum
                 order by LessonSchedules.LessonNum
             ").AsEnumerable();
-            if (cbClass.SelectedIndex != 0)
+            if (cbClass.SelectedIndex > 0)
             {
                 lessons = lessons.Where(l => l.ClassId == int.Parse(cbClass.SelectedValue.ToString()));
             }
-            if (cbTeacher.SelectedIndex != 0)
+            if (cbTeacher.SelectedIndex > 0)
             {
                 lessons = lessons.Where(l => l.TeacherId == int.Parse(cbTeacher.SelectedValue.ToString()));
             }
@@ -155,6 +155,11 @@ namespace SchoolTimetable.Pages
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(1);
+        }
+
+        private void btnToday_Click(object sender, RoutedEventArgs e)
+        {
+            dpDate.SelectedDate = DateTime.Today;
         }
     }
 }

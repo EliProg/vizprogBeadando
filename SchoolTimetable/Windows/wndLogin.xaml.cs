@@ -14,7 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = Wpf.Ui.Controls.MessageBox;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
 
 namespace SchoolTimetable.Windows
 {
@@ -23,20 +24,25 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLogin : FluentWindow
     {
-        private readonly TimetableContext _context;
-
         public wndLogin()
         {
             InitializeComponent();
-            _context = new TimetableContext();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var user = _context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text && !string.IsNullOrEmpty(x.PasswordHash));
+            var context = new TimetableContext();
+            var user = context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text && !string.IsNullOrEmpty(x.PasswordHash));
             if (user == null || !BCrypt.Net.BCrypt.Verify(pbPassword.Password, user.PasswordHash))
             {
-                //MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                /*
+                var msg = new MessageBox();
+                msg.Title = "ABC";
+                msg.Content = "Hello";
+                msg.PrimaryButtonText = "OK";
+                msg.ShowDialogAsync();
+                */
+                MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {

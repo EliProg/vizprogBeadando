@@ -6,7 +6,7 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Bejelentkezés" Width="300" SizeToContent="Height" ResizeMode="CanMinimize">
+        Width="300" SizeToContent="Height" Title="Bejelentkezés">
     <StackPanel>
         <ui:TitleBar Title="Bejelentkezés"/>
         <StackPanel Margin="20">

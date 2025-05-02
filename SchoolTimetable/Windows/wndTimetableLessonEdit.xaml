@@ -7,36 +7,42 @@
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         xmlns:customName="wpftool"
         mc:Ignorable="d"
-        Title="Órarend módosítása" Width="300" SizeToContent="Height">
-    <StackPanel>
-        <ui:TitleBar Title="Órarend módosítása"/>
-        <StackPanel Margin="20">
-            <Label>Osztály</Label>
-            <ComboBox/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Tantárgy</Label>
-            <ComboBox/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Tanár</Label>
-            <ComboBox/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Hét napja</Label>
-            <ComboBox/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Óra</Label>
-            <ComboBox/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Érvényesség kezdete</Label>
-            <DatePicker/>
-            <Separator Opacity="0" Height="10"/>
-            <Label>Érvényesség vége</Label>
-            <DatePicker/>
-            <Separator Opacity="0" Height="10"/>
-            <DockPanel>
-                <Button Click="btnSave_Click">Mentés</Button>
-                <Separator Opacity="0" Width="10"/>
-                <Button Click="btnCancel_Click">Mégse</Button>
-            </DockPanel>
-        </StackPanel>
-    </StackPanel>
+        Width="300" SizeToContent="Height" ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Grid.Row="0" x:Name="titleBar"/>
+        <ScrollViewer Grid.Row="1" Padding="20,20,20,0">
+            <StackPanel>
+                <Label>Osztály</Label>
+                <ComboBox x:Name="cbClass"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Tantárgy</Label>
+                <ComboBox x:Name="cbSubject"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Tanár</Label>
+                <ComboBox x:Name="cbTeacher"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Hét napja</Label>
+                <ComboBox x:Name="cbDay"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Óra</Label>
+                <ComboBox x:Name="cbLessonNum"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Érvényesség kezdete</Label>
+                <DatePicker x:Name="dpStart"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Érvényesség vége</Label>
+                <DatePicker x:Name="dpEnd"/>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2" Margin="20">
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Separator Opacity="0" Width="10"/>
+            <Button Click="btnCancel_Click">Mégse</Button>
+        </DockPanel>
+    </Grid>
 </ui:FluentWindow>

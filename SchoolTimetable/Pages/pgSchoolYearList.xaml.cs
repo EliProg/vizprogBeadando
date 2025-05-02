@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,16 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgSchoolYearList : Page
     {
-        private readonly TimetableContext _context;
-
         private void getList()
         {
-            var schoolYears = _context.enSchoolYears.ToList();
+            var context = new TimetableContext();
+            var schoolYears = context.enSchoolYears.OrderBy(y => y.Name).ToList();
             dgSchoolYears.ItemsSource = schoolYears;
         }
 
         public pgSchoolYearList()
         {
             InitializeComponent();
-            _context = new TimetableContext();
             getList();
         }
 
@@ -67,10 +66,19 @@ namespace SchoolTimetable.Pages
             {
                 return;
             }
-            _context.Attach(schoolYear);
-            _context.enSchoolYears.Remove(schoolYear);
-            _context.SaveChanges();
-            MessageBox.Show("Az osztály törlése sikerült.");
+            try
+            {
+                var context = new TimetableContext();
+                context.enSchoolYears.Attach(schoolYear);
+                context.enSchoolYears.Remove(schoolYear);
+                context.SaveChanges();
+                Helper.Log("Delete", schoolYear);
+            }
+            catch
+            {
+                MessageBox.Show("A tanév törlése nem sikerült!", "Hiba",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             getList();
         }
     }

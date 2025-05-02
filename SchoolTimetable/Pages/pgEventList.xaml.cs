@@ -1,4 +1,6 @@
-﻿using System;
+﻿using cnTimetable;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,27 +24,15 @@ namespace SchoolTimetable.Pages
     {
         private void getList()
         {
-
+            var context = new TimetableContext();
+            var events = context.enEvents.Include(e => e.enUser).ToList();
+            dgEvents.ItemsSource = events;
         }
 
         public pgEventList()
         {
             InitializeComponent();
-        }
-
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-
+            getList();
         }
     }
 }

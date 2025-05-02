@@ -17,7 +17,6 @@
                 <DataGridTextColumn Header="Kezdete" Binding="{Binding StartDate, StringFormat=yyyy. MM. dd.}"/>
                 <DataGridTextColumn Header="Vége" Binding="{Binding EndDate, StringFormat=yyyy. MM. dd.}"/>
                 <DataGridCheckBoxColumn Header="Aktív" Binding="{Binding Active}"/>
-
                 <DataGridTemplateColumn Header="Szerkesztés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -36,7 +35,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

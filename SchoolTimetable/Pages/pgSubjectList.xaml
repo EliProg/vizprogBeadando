@@ -14,7 +14,6 @@
         <DataGrid x:Name="dgSubjects" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Név" Binding="{Binding Name}"/>
-
                 <DataGridTemplateColumn Header="Szerkesztés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -33,7 +32,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

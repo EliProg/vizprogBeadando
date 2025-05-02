@@ -6,9 +6,9 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Felhasználó módosítása" Width="300" SizeToContent="Height" ResizeMode="NoResize">
+        Width="300" SizeToContent="Height" ShowInTaskbar="False">
     <StackPanel>
-        <ui:TitleBar x:Name="titleBar" Title="Felhasználó módosítása" />
+        <ui:TitleBar x:Name="titleBar"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
             <TextBox x:Name="tbName"/>
@@ -20,7 +20,7 @@
             <PasswordBox x:Name="pbPassword" PasswordChar="●"/>
             <Separator Opacity="0" Height="10"/>
             <CheckBox x:Name="cbAdmin" Content="Admin"/>
-            <Separator Opacity="0" Height="10"/>
+            <Separator Opacity="0" Height="20"/>
             <DockPanel>
                 <Button x:Name="btnSave" Click="btnSave_Click">Mentés</Button>
                 <Separator Opacity="0" Width="10"/>

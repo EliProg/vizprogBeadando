@@ -1,6 +1,6 @@
 ﻿using cnTimetable;
-using Microsoft.EntityFrameworkCore;
 using Models;
+using SchoolTimetable.Helpers;
 using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
@@ -24,18 +24,16 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgClassList : Page
     {
-        private readonly TimetableContext _context;
-
         private void getList()
         {
-            var classes = _context.enClasses.ToList();
+            var context = new TimetableContext();
+            var classes = context.enClasses.OrderBy(c => c.Name).ToList();
             dgClasses.ItemsSource = classes;
         }
 
         public pgClassList()
         {
             InitializeComponent();
-            _context = new TimetableContext();
             getList();
         }
 
@@ -68,10 +66,19 @@ namespace SchoolTimetable.Pages
             {
                 return;
             }
-            _context.Attach(_class);
-            _context.enClasses.Remove(_class);
-            _context.SaveChanges();
-            MessageBox.Show("Az osztály törlése sikerült.");
+            try
+            {
+                var context = new TimetableContext();
+                context.enClasses.Attach(_class);
+                context.enClasses.Remove(_class);
+                context.SaveChanges();
+                Helper.Log("Delete", _class);
+            }
+            catch
+            {
+                MessageBox.Show("Az osztály törlése nem sikerült!", "Hiba",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             getList();
         }
     }

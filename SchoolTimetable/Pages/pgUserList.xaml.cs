@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,16 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgUserList : Page
     {
-        private readonly TimetableContext _context;
-
         private void getList()
         {
-            var users = _context.enUsers.ToList();
+            var context = new TimetableContext();
+            var users = context.enUsers.OrderBy(u => u.Name).ToList();
             dgUsers.ItemsSource = users;
         }
 
         public pgUserList()
         {
             InitializeComponent();
-            _context = new TimetableContext();
             getList();
         }
 
@@ -67,10 +66,19 @@ namespace SchoolTimetable.Pages
             {
                 return;
             }
-            _context.Attach(user);
-            _context.enUsers.Remove(user);
-            _context.SaveChanges();
-            MessageBox.Show("A felhasználó törlése sikerült.");
+            try
+            {
+                var context = new TimetableContext();
+                context.enUsers.Attach(user);
+                context.enUsers.Remove(user);
+                context.SaveChanges();
+                Helper.Log("Delete", user);
+            }
+            catch
+            {
+                MessageBox.Show("A felhasználó törlése nem sikerült!", "Hiba",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             getList();
         }
     }

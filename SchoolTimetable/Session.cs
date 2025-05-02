@@ -11,7 +11,6 @@ namespace SchoolTimetable
 {
     internal static class Session
     {
-        private static TimetableContext _context = new();
         public static enUser? user;
         public static enSchoolYear? schoolYear;
 
@@ -23,7 +22,8 @@ namespace SchoolTimetable
 
         public static void updateSchoolYear()
         {
-            schoolYear = _context.enSchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).First();
+            var context = new TimetableContext();
+            schoolYear = context.enSchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).First();
         }
     }
 }

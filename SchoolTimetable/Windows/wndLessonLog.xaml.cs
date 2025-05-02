@@ -1,5 +1,6 @@
 ﻿using cnTimetable;
 using Models;
+using SchoolTimetable.Helpers;
 using SchoolTimetable.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = Wpf.Ui.Controls.MessageBox;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
 
 namespace SchoolTimetable.Windows
 {
@@ -25,20 +27,22 @@ namespace SchoolTimetable.Windows
     /// </summary>
     public partial class wndLessonLog : FluentWindow
     {
-        private readonly TimetableContext _context;
+        private readonly TimetableContext context;
         private readonly vmLesson lesson;
 
-        public wndLessonLog(vmLesson lesson)
+        public wndLessonLog(vmLesson entity)
         {
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            _context = new TimetableContext();
-            this.lesson = lesson;
+            context = new TimetableContext();
+            lesson = entity;
             tbClass.Text = lesson.Class;
-            tbDate.Text = lesson.Date.ToString("yyyy. MM. dd.");
-            tbLessonNum.Text = lesson.LessonNum.ToString();
+            tbDate.Text = lesson.Date.ToString("yyyy. MM. dd.") + " " +
+                lesson.LessonStart.ToString("hh\\:mm") + "-" +
+                lesson.LessonEnd.ToString("hh\\:mm") +
+                " (" + lesson.LessonNum.ToString() + ". óra)";
             tbSubject.Text = lesson.Subject;
             tbTeacher.Text = lesson.Teacher;
             tbTopic.Text = lesson.Topic;
@@ -48,14 +52,15 @@ namespace SchoolTimetable.Windows
         {
             if (string.IsNullOrWhiteSpace(tbTopic.Text))
             {
-                //MessageBox.Show("Az óra témája nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Az óra témájának megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (lesson.LoggedLessonId != null)
             {
-                var loggedLesson = _context.enLoggedLessons.Find(lesson.LoggedLessonId);
+                var loggedLesson = context.enLoggedLessons.Find(lesson.LoggedLessonId);
                 loggedLesson.Topic = tbTopic.Text;
-                _context.SaveChanges();
+                context.SaveChanges();
+                Helper.Log("Insert", loggedLesson);
             }
             else
             {
@@ -69,9 +74,11 @@ namespace SchoolTimetable.Windows
                     Date = lesson.Date,
                     Topic = tbTopic.Text
                 };
-                _context.Add(loggedLesson);
-                _context.SaveChanges();
+                context.Add(loggedLesson);
+                context.SaveChanges();
+                Helper.Log("Update", loggedLesson);
             }
+            this.DialogResult = true;
             this.Close();
         }
 

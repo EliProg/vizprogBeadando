@@ -6,13 +6,13 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Osztály módosítása" Width="300" SizeToContent="Height">
+        Width="300" SizeToContent="Height" ShowInTaskbar="False">
     <StackPanel>
-        <ui:TitleBar Title="Osztály módosítása"/>
+        <ui:TitleBar x:Name="titleBar"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
             <TextBox x:Name="tbName"/>
-            <Separator Opacity="0" Height="10"/>
+            <Separator Opacity="0" Height="20"/>
             <DockPanel>
                 <Button Click="btnSave_Click">Mentés</Button>
                 <Separator Opacity="0" Width="10"/>

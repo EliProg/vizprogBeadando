@@ -16,7 +16,6 @@
                 <DataGridTextColumn Header="Név" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Felhasználónév" Binding="{Binding Username}"/>
                 <DataGridCheckBoxColumn Header="Admin" Binding="{Binding Admin}"/>
-
                 <DataGridTemplateColumn Header="Szerkesztés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -35,7 +34,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

@@ -24,12 +24,9 @@ namespace SchoolTimetable.Pages
     /// </summary>
     public partial class pgTimetable : Page
     {
-        private readonly TimetableContext _context;
-
         public pgTimetable()
         {
             InitializeComponent();
-            _context = new TimetableContext();
 
             dpDate.SelectedDate = DateTime.Today;
             dpDate.DisplayDateStart = Session.schoolYear.StartDate;
@@ -43,8 +40,19 @@ namespace SchoolTimetable.Pages
             {
                 return;
             }
+            if (datetime > DateTime.Today)
+            {
+                dgLessons.Columns[6].Visibility = Visibility.Collapsed;
+                dgLessons.Columns[7].Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                dgLessons.Columns[6].Visibility = Visibility.Visible;
+                dgLessons.Columns[7].Visibility = Visibility.Visible;
+            }
             var date = datetime.Value.ToString("yyyyMMdd");
-            var lessons = _context.Database.SqlQuery<vmLesson>(
+            var context = new TimetableContext();
+            var lessons = context.Database.SqlQuery<vmLesson>(
                 @$"
                 set datefirst 1;
                 select
@@ -109,8 +117,10 @@ namespace SchoolTimetable.Pages
             var button = sender as Button;
             var lesson = button?.Tag as vmLesson;
             var window = new wndLessonLog(lesson);
-            window.ShowDialog();
-            getList();
+            if (window.ShowDialog() == true)
+            {
+                getList();
+            }
         }
 
         private void btnPrev_Click(object sender, RoutedEventArgs e)
@@ -121,6 +131,11 @@ namespace SchoolTimetable.Pages
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             dpDate.SelectedDate = dpDate.SelectedDate.Value.AddDays(1);
+        }
+
+        private void btnToday_Click(object sender, RoutedEventArgs e)
+        {
+            dpDate.SelectedDate = DateTime.Today;
         }
     }
 }

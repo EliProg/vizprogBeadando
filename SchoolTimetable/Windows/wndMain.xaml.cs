@@ -22,7 +22,8 @@ namespace SchoolTimetable.Windows
         {
             InitializeComponent();
 
-            miUser.Header = $"Bejelentkezett: {Session.user.Name}";
+            miSchoolYear.Header = "Tanév: " + Session.schoolYear.Name;
+            miUser.Header = "Bejelentkezett: " + Session.user.Name;
             if (Session.user.Admin)
             {
                 miAdmin.Visibility = Visibility.Visible;

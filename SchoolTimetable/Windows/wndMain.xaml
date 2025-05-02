@@ -6,7 +6,7 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:SchoolTimetable.Windows"
         mc:Ignorable="d"
-        Title="Órarend" Height="450" Width="800">
+        Height="450" Width="800" Title="Órarend">
     <DockPanel>
         <ui:TitleBar Title="Órarend" DockPanel.Dock="Top"/>
         <Menu DockPanel.Dock="Top">
@@ -25,6 +25,7 @@
             </MenuItem>
             <MenuItem x:Name="miTimetables" Visibility="Collapsed" Click="miTimetables_Click" Header="Órarendek"/>
             <MenuItem x:Name="miMyTimetable" Click="miMyTimetable_Click" Header="Saját órarend"/>
+            <MenuItem x:Name="miSchoolYear"/>
             <MenuItem x:Name="miUser" Header="Bejelentkezett:" HorizontalAlignment="Right">
                 <MenuItem Header="Kijelentkezés" Click="miLogout_Click"/>
                 <MenuItem Header="Bezárás" Click="miClose_Click"/>
