@@ -17,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
+
 namespace SchoolTimetable.Pages
 {
     /// <summary>
@@ -57,12 +59,11 @@ namespace SchoolTimetable.Pages
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var user = button?.Tag as enUser;
-            if (MessageBox.Show("Biztos benne, hogy törli a felhasználót?", "Felhasználó törlése",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (await UiMessageBox.Question("Biztos benne, hogy törli a felhasználót?", "Felhasználó törlése") != MessageBoxResult.Primary)
             {
                 return;
             }
@@ -72,12 +73,11 @@ namespace SchoolTimetable.Pages
                 context.enUsers.Attach(user);
                 context.enUsers.Remove(user);
                 context.SaveChanges();
-                Helper.Log("Delete", user);
+                Log.Db("Delete", user);
             }
             catch
             {
-                MessageBox.Show("A felhasználó törlése nem sikerült!", "Hiba",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A felhasználó törlése nem sikerült!", "Hiba");
             }
             getList();
         }

@@ -17,9 +17,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -29,6 +26,7 @@ namespace SchoolTimetable.Windows
     {
         private readonly TimetableContext context;
         private readonly enUser user;
+        private readonly bool insert;
 
         public wndUserEdit(int? id)
         {
@@ -37,6 +35,7 @@ namespace SchoolTimetable.Windows
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             context = new TimetableContext();
+            insert = id == null;
             if (id == null)
             {
                 titleBar.Title = "Új felhasználó";
@@ -47,33 +46,28 @@ namespace SchoolTimetable.Windows
             {
                 titleBar.Title = "Felhasználó módosítása";
                 user = context.enUsers.Find(id);
-                tbName.Text = user.Name;
-                tbUsername.Text = user.Username;
-                cbAdmin.IsChecked = user.Admin;
             }
+            this.DataContext = user;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(user.Name))
             {
-                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A név megadása kötelező!", "Hiba");
                 return;
             }
             if (string.IsNullOrWhiteSpace(user.Username))
             {
-                MessageBox.Show("A felhasználónév megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A felhasználónév megadása kötelező!", "Hiba");
                 return;
             }
-            user.Name = tbName.Text;
-            user.Username = tbUsername.Text;
-            user.Admin = cbAdmin.IsChecked == true;
             if (!string.IsNullOrWhiteSpace(pbPassword.Password))
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(pbPassword.Password);
             }
             context.SaveChanges();
-            Helper.Log("Update", user);
+            Log.Db(insert ? "Insert" : "Update", user);
             this.DialogResult = true;
             this.Close();
         }

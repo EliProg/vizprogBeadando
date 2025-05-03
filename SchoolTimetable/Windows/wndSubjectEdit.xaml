@@ -11,7 +11,7 @@
         <ui:TitleBar x:Name="titleBar"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
-            <TextBox x:Name="tbName"/>
+            <TextBox Text="{Binding Name}"/>
             <Separator Opacity="0" Height="20"/>
             <DockPanel>
                 <Button Click="btnSave_Click">Mentés</Button>

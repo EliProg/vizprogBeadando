@@ -1,6 +1,7 @@
 ﻿using cnTimetable;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using SchoolTimetable.Helpers;
 using SchoolTimetable.Windows;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using MessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
 
 namespace SchoolTimetable.Pages
 {
@@ -65,19 +68,26 @@ namespace SchoolTimetable.Pages
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var ttLesson = button?.Tag as enTimetableLesson;
-            if (MessageBox.Show("Biztos benne, hogy törli az órát?", "Óra törlése",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (await UiMessageBox.Question("Biztos benne, hogy törli az órát?", "Óra törlése") != MessageBoxResult.Primary)
             {
                 return;
             }
-            var context = new TimetableContext();
-            context.enTimetableLessons.Attach(ttLesson);
-            context.enTimetableLessons.Remove(ttLesson);
-            context.SaveChanges();
+            try
+            {
+                var context = new TimetableContext();
+                context.enTimetableLessons.Attach(ttLesson);
+                context.enTimetableLessons.Remove(ttLesson);
+                context.SaveChanges();
+                Log.Db("Delete", ttLesson);
+            }
+            catch
+            {
+                await UiMessageBox.Show("Az óra törlése nem sikerült!", "Hiba");
+            }
             getList();
         }
     }

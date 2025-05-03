@@ -16,9 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -28,6 +25,7 @@ namespace SchoolTimetable.Windows
     {
         private readonly TimetableContext context;
         private readonly enSchoolYear schoolYear;
+        private readonly bool insert;
 
         public wndSchoolYearEdit(int? id)
         {
@@ -36,6 +34,7 @@ namespace SchoolTimetable.Windows
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             context = new TimetableContext();
+            insert = id == null;
             if (id == null)
             {
                 titleBar.Title = "Új tanév";
@@ -46,36 +45,29 @@ namespace SchoolTimetable.Windows
             {
                 titleBar.Title = "Tanév módosítása";
                 schoolYear = context.enSchoolYears.Find(id);
-                tbName.Text = schoolYear.Name;
-                dpStart.SelectedDate = schoolYear.StartDate;
-                dpEnd.SelectedDate = schoolYear.EndDate;
-                cbActive.IsChecked = schoolYear.Active;
             }
+            this.DataContext = schoolYear;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbName.Text))
+            if (string.IsNullOrWhiteSpace(schoolYear.Name))
             {
-                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A név megadása kötelező!", "Hiba");
                 return;
             }
             if (dpStart.SelectedDate == null)
             {
-                MessageBox.Show("A kezdődátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A kezdődátum megadása kötelező!", "Hiba");
                 return;
             }
             if (dpEnd.SelectedDate == null)
             {
-                MessageBox.Show("A záródátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A végdátum megadása kötelező!", "Hiba");
                 return;
             }
-            schoolYear.Name = tbName.Text;
-            schoolYear.StartDate = dpStart.SelectedDate.Value;
-            schoolYear.EndDate = dpEnd.SelectedDate.Value;
-            schoolYear.Active = cbActive.IsChecked == true;
             context.SaveChanges();
-            Helper.Log("Update", schoolYear);
+            Log.Db(insert ? "Insert" : "Update", schoolYear);
             this.DialogResult = true;
             this.Close();
         }

@@ -1,4 +1,5 @@
 ﻿using cnTimetable;
+using SchoolTimetable.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -27,29 +25,30 @@ namespace SchoolTimetable.Windows
         public wndLogin()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             var context = new TimetableContext();
-            var user = context.enUsers.FirstOrDefault(x => x.Username == tbUsername.Text && !string.IsNullOrEmpty(x.PasswordHash));
+            var user = context.enUsers.FirstOrDefault(u => u.Username == tbUsername.Text && !string.IsNullOrEmpty(u.PasswordHash));
             if (user == null || !BCrypt.Net.BCrypt.Verify(pbPassword.Password, user.PasswordHash))
             {
-                /*
-                var msg = new MessageBox();
-                msg.Title = "ABC";
-                msg.Content = "Hello";
-                msg.PrimaryButtonText = "OK";
-                msg.ShowDialogAsync();
-                */
-                MessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                Log.Login("Failed", user);
+                await UiMessageBox.Show("Helytelen felhasználónév vagy jelszó!", "Hiba");
             }
             else
             {
+                Log.Login("Successful", user);
                 Session.user = user;
                 Session.updateSchoolYear();
-                var window = new wndMain();
+                var window = new wndMain
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Owner = this
+                };
                 window.Show();
+                window.Owner = null;
                 Application.Current.MainWindow = window;
                 this.Close();
             }

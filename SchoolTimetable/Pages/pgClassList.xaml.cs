@@ -17,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
+
 namespace SchoolTimetable.Pages
 {
     /// <summary>
@@ -57,12 +59,11 @@ namespace SchoolTimetable.Pages
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             var _class = button?.Tag as enClass;
-            if (MessageBox.Show("Biztos benne, hogy törli az osztályt?", "Osztály törlése",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (await UiMessageBox.Question("Biztos benne, hogy törli az osztályt?", "Osztály törlése") != MessageBoxResult.Primary)
             {
                 return;
             }
@@ -72,12 +73,11 @@ namespace SchoolTimetable.Pages
                 context.enClasses.Attach(_class);
                 context.enClasses.Remove(_class);
                 context.SaveChanges();
-                Helper.Log("Delete", _class);
+                Log.Db("Delete", _class);
             }
             catch
             {
-                MessageBox.Show("Az osztály törlése nem sikerült!", "Hiba",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("Az osztály törlése nem sikerült!", "Hiba");
             }
             getList();
         }

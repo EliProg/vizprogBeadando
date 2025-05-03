@@ -16,9 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -28,6 +25,7 @@ namespace SchoolTimetable.Windows
     {
         private readonly TimetableContext context;
         private readonly enClass _class;
+        private readonly bool insert;
 
         public wndClassEdit(int? id)
         {
@@ -36,6 +34,7 @@ namespace SchoolTimetable.Windows
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             context = new TimetableContext();
+            insert = id == null;
             if (id == null)
             {
                 titleBar.Title = "Új osztály";
@@ -46,20 +45,19 @@ namespace SchoolTimetable.Windows
             {
                 titleBar.Title = "Osztály módosítása";
                 _class = context.enClasses.Find(id);
-                tbName.Text = _class.Name;
             }
+            this.DataContext = _class;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbName.Text))
+            if (string.IsNullOrWhiteSpace(_class.Name))
             {
-                MessageBox.Show("A név megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A név megadása kötelező!", "Hiba");
                 return;
             }
-            _class.Name = tbName.Text;
             context.SaveChanges();
-            Helper.Log("Update", _class);
+            Log.Db(insert ? "Insert" : "Update", _class);
             this.DialogResult = true;
             this.Close();
         }

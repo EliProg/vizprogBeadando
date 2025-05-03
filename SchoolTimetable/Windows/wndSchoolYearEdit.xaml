@@ -11,15 +11,15 @@
         <ui:TitleBar x:Name="titleBar"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
-            <TextBox x:Name="tbName"/>
+            <TextBox Text="{Binding Name}"/>
             <Separator Opacity="0" Height="10"/>
             <Label>Kezdete</Label>
-            <DatePicker x:Name="dpStart"/>
+            <DatePicker x:Name="dpStart" SelectedDate="{Binding StartDate}"/>
             <Separator Opacity="0" Height="10"/>
             <Label>Vége</Label>
-            <DatePicker x:Name="dpEnd"/>
+            <DatePicker x:Name="dpEnd" SelectedDate="{Binding EndDate}"/>
             <Separator Opacity="0" Height="10"/>
-            <CheckBox x:Name="cbActive" Content="Aktív"/>
+            <CheckBox Content="Aktív" IsChecked="{Binding Active}"/>
             <Separator Opacity="0" Height="20"/>
             <DockPanel>
                 <Button Click="btnSave_Click">Mentés</Button>

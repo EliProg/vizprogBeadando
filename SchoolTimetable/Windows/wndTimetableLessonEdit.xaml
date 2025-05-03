@@ -18,25 +18,25 @@
         <ScrollViewer Grid.Row="1" Padding="20,20,20,0">
             <StackPanel>
                 <Label>Osztály</Label>
-                <ComboBox x:Name="cbClass"/>
+                <ComboBox x:Name="cbClass" SelectedValue="{Binding ClassId}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Tantárgy</Label>
-                <ComboBox x:Name="cbSubject"/>
+                <ComboBox x:Name="cbSubject" SelectedValue="{Binding SubjectId}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Tanár</Label>
-                <ComboBox x:Name="cbTeacher"/>
+                <ComboBox x:Name="cbTeacher" SelectedValue="{Binding TeacherId}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Hét napja</Label>
-                <ComboBox x:Name="cbDay"/>
+                <ComboBox x:Name="cbDay" SelectedValue="{Binding DayNum}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Óra</Label>
-                <ComboBox x:Name="cbLessonNum"/>
+                <ComboBox x:Name="cbLessonNum" SelectedValue="{Binding LessonNum}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Érvényesség kezdete</Label>
-                <DatePicker x:Name="dpStart"/>
+                <DatePicker x:Name="dpStart" SelectedDate="{Binding StartDate}"/>
                 <Separator Opacity="0" Height="10"/>
                 <Label>Érvényesség vége</Label>
-                <DatePicker x:Name="dpEnd"/>
+                <DatePicker x:Name="dpEnd" SelectedDate="{Binding EndDate}"/>
             </StackPanel>
         </ScrollViewer>
         <DockPanel Grid.Row="2" Margin="20">

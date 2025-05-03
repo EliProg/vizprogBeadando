@@ -16,9 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -28,6 +25,7 @@ namespace SchoolTimetable.Windows
     {
         private readonly TimetableContext context;
         private readonly enTimetableLesson ttLesson;
+        private readonly bool insert;
 
         public wndTimetableLessonEdit(int? id)
         {
@@ -97,75 +95,63 @@ namespace SchoolTimetable.Windows
             cbLessonNum.DisplayMemberPath = "Name";
             cbLessonNum.ItemsSource = lessonNums;
 
+            insert = id == null;
             if (id == null)
             {
                 titleBar.Title = "Új óra";
                 ttLesson = new enTimetableLesson();
                 context.Add(ttLesson);
                 ttLesson.SchoolYearId = Session.schoolYear.Id;
-                dpStart.SelectedDate = DateTime.Today;
-                dpEnd.SelectedDate = DateTime.Today;
+                ttLesson.StartDate = DateTime.Today;
+                ttLesson.EndDate = DateTime.Today;
             }
             else
             {
                 titleBar.Title = "Óra módosítása";
                 ttLesson = context.enTimetableLessons.Find(id);
-                cbClass.SelectedValue = ttLesson.ClassId;
-                cbSubject.SelectedValue = ttLesson.SubjectId;
-                cbTeacher.SelectedValue = ttLesson.TeacherId;
-                cbDay.SelectedValue = ttLesson.DayNum;
-                cbLessonNum.SelectedValue = ttLesson.LessonNum;
-                dpStart.SelectedDate = ttLesson.StartDate;
-                dpEnd.SelectedDate = ttLesson.EndDate;
             }
+            this.DataContext = ttLesson;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (cbClass.SelectedValue == null)
             {
-                MessageBox.Show("Az osztály megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("Az osztály megadása kötelező!", "Hiba");
                 return;
             }
             if (cbSubject.SelectedValue == null)
             {
-                MessageBox.Show("A tantárgy megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A tantárgy megadása kötelező!", "Hiba");
                 return;
             }
             if (cbTeacher.SelectedValue == null)
             {
-                MessageBox.Show("A tanár megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A tanár megadása kötelező!", "Hiba");
                 return;
             }
             if (cbDay.SelectedValue == null)
             {
-                MessageBox.Show("A nap megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A nap megadása kötelező!", "Hiba");
                 return;
             }
             if (cbLessonNum.SelectedValue == null)
             {
-                MessageBox.Show("Az óra megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("Az óra megadása kötelező!", "Hiba");
                 return;
             }
             if (dpStart.SelectedDate == null)
             {
-                MessageBox.Show("A kezdődátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A kezdődátum megadása kötelező!", "Hiba");
                 return;
             }
             if (dpEnd.SelectedDate == null)
             {
-                MessageBox.Show("A záródátum megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("A végdátum megadása kötelező!", "Hiba");
                 return;
             }
-            ttLesson.ClassId = int.Parse(cbClass.SelectedValue.ToString());
-            ttLesson.SubjectId = int.Parse(cbSubject.SelectedValue.ToString());
-            ttLesson.TeacherId = int.Parse(cbTeacher.SelectedValue.ToString());
-            ttLesson.DayNum = byte.Parse(cbDay.SelectedValue.ToString());
-            ttLesson.LessonNum = byte.Parse(cbLessonNum.SelectedValue.ToString());
-            ttLesson.StartDate = dpStart.SelectedDate.Value;
-            ttLesson.EndDate = dpEnd.SelectedDate.Value;
             context.SaveChanges();
-            Helper.Log("Update", ttLesson);
+            Log.Db(insert ? "Insert" : "Update", ttLesson);
             this.DialogResult = true;
             this.Close();
         }

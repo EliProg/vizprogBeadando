@@ -11,15 +11,15 @@
         <ui:TitleBar x:Name="titleBar"/>
         <StackPanel Margin="20">
             <Label>Név</Label>
-            <TextBox x:Name="tbName"/>
+            <TextBox Text="{Binding Name}"/>
             <Separator Opacity="0" Height="10"/>
             <Label>Felhasználónév</Label>
-            <TextBox x:Name="tbUsername"/>
+            <TextBox Text="{Binding Username}"/>
             <Separator Opacity="0" Height="10"/>
             <Label>Jelszó</Label>
             <PasswordBox x:Name="pbPassword" PasswordChar="●"/>
             <Separator Opacity="0" Height="10"/>
-            <CheckBox x:Name="cbAdmin" Content="Admin"/>
+            <CheckBox Content="Admin" IsChecked="{Binding Admin}"/>
             <Separator Opacity="0" Height="20"/>
             <DockPanel>
                 <Button x:Name="btnSave" Click="btnSave_Click">Mentés</Button>

@@ -17,9 +17,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 
-using MessageBox = System.Windows.MessageBox;
-using MessageBoxButton = System.Windows.MessageBoxButton;
-
 namespace SchoolTimetable.Windows
 {
     /// <summary>
@@ -48,11 +45,11 @@ namespace SchoolTimetable.Windows
             tbTopic.Text = lesson.Topic;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbTopic.Text))
             {
-                MessageBox.Show("Az óra témájának megadása kötelező!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                await UiMessageBox.Show("Az óra témájának megadása kötelező!", "Hiba");
                 return;
             }
             if (lesson.LoggedLessonId != null)
@@ -60,7 +57,7 @@ namespace SchoolTimetable.Windows
                 var loggedLesson = context.enLoggedLessons.Find(lesson.LoggedLessonId);
                 loggedLesson.Topic = tbTopic.Text;
                 context.SaveChanges();
-                Helper.Log("Insert", loggedLesson);
+                Log.Db("Update", loggedLesson);
             }
             else
             {
@@ -76,7 +73,7 @@ namespace SchoolTimetable.Windows
                 };
                 context.Add(loggedLesson);
                 context.SaveChanges();
-                Helper.Log("Update", loggedLesson);
+                Log.Db("Insert", loggedLesson);
             }
             this.DialogResult = true;
             this.Close();

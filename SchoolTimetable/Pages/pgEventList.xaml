@@ -12,9 +12,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Dátum és idő" Binding="{Binding Time, StringFormat=yyyy. MM. dd. HH:mm:ss}"/>
+                <DataGridTextColumn Header="Felhasználó" Binding="{Binding enUser.Username}"/>
                 <DataGridTextColumn Header="Típus" Binding="{Binding Type}"/>
-                <DataGridTextColumn Header="Felhasználó" Binding="{Binding enUser.Name}"/>
-                <DataGridTextColumn Header="Leírás" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Param1" Binding="{Binding Param1}"/>
+                <DataGridTextColumn Header="Param2" Binding="{Binding Param2}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
