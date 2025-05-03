@@ -14,7 +14,7 @@ namespace SchoolTimetable.Helpers
         public static void Db(string type, object obj)
         {
             var context = new TimetableContext();
-            var _event = new enEvent
+            var _event = new Event
             {
                 Time = DateTime.Now,
                 UserId = Session.user.Id,
@@ -26,15 +26,19 @@ namespace SchoolTimetable.Helpers
             context.SaveChanges();
         }
 
-        public static void Login(string type, enUser? user)
+        public static void Login(string type, User? user, string username)
         {
             var context = new TimetableContext();
-            var _event = new enEvent
+            var _event = new Event
             {
                 Time = DateTime.Now,
                 UserId = user?.Id,
                 Type = type + " login"
             };
+            if (user == null)
+            {
+                _event.Param1 = username;
+            }
             context.Add(_event);
             context.SaveChanges();
         }

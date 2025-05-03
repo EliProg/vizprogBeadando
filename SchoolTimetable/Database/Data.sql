@@ -1,10 +1,10 @@
 USE [SchoolTimetable]
 GO
-SET IDENTITY_INSERT [dbo].[LessonSchedules] ON 
+SET IDENTITY_INSERT [dbo].[BellSchedules] ON 
 GO
-INSERT [dbo].[LessonSchedules] ([Id], [LessonNum], [StartTime], [EndTime]) VALUES (1, 1, CAST(N'08:00:00' AS Time), CAST(N'08:45:00' AS Time))
+INSERT [dbo].[BellSchedules] ([Id], [LessonNum], [StartTime], [EndTime]) VALUES (1, 1, CAST(N'08:00:00' AS Time), CAST(N'08:45:00' AS Time))
 GO
-SET IDENTITY_INSERT [dbo].[LessonSchedules] OFF
+SET IDENTITY_INSERT [dbo].[BellSchedules] OFF
 GO
 SET IDENTITY_INSERT [dbo].[SchoolYears] ON 
 GO
@@ -14,7 +14,7 @@ SET IDENTITY_INSERT [dbo].[SchoolYears] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 GO
-INSERT [dbo].[Users] ([Id], [Username], [EduId], [Name], [Admin], [PasswordHash]) VALUES (1, N'user', NULL, N'User', 1, N'$2a$12$DovUadWb8bhKVcMIYXmmtebiwl725RD1P0WjsZ0JqFpgeDsK.tRj2')
+INSERT [dbo].[Users] ([Id], [Username], [Name], [Admin], [PasswordHash]) VALUES (1, N'user', N'User', 1, N'$2a$12$DovUadWb8bhKVcMIYXmmtebiwl725RD1P0WjsZ0JqFpgeDsK.tRj2')
 GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO

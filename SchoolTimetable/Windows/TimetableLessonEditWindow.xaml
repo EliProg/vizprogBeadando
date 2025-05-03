@@ -1,0 +1,47 @@
+﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.TimetableLessonEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:SchoolTimetable.Windows"
+        mc:Ignorable="d"
+        Width="300" SizeToContent="Height" ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Grid.Row="0" x:Name="titleBar"/>
+        <ScrollViewer Grid.Row="1" Padding="20,20,20,0">
+            <StackPanel>
+                <Label>Osztály</Label>
+                <ComboBox x:Name="cbClass" SelectedValue="{Binding ClassId}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Tantárgy</Label>
+                <ComboBox x:Name="cbSubject" SelectedValue="{Binding SubjectId}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Tanár</Label>
+                <ComboBox x:Name="cbTeacher" SelectedValue="{Binding TeacherId}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Hét napja</Label>
+                <ComboBox x:Name="cbDay" SelectedValue="{Binding DayNum}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Óra</Label>
+                <ComboBox x:Name="cbLessonNum" SelectedValue="{Binding LessonNum}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Érvényesség kezdete</Label>
+                <DatePicker x:Name="dpStart" SelectedDate="{Binding StartDate}"/>
+                <Separator Opacity="0" Height="10"/>
+                <Label>Érvényesség vége</Label>
+                <DatePicker x:Name="dpEnd" SelectedDate="{Binding EndDate}"/>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2" Margin="20">
+            <Button Click="btnSave_Click">Mentés</Button>
+            <Separator Opacity="0" Width="10"/>
+            <Button Click="btnCancel_Click">Mégse</Button>
+        </DockPanel>
+    </Grid>
+</ui:FluentWindow>

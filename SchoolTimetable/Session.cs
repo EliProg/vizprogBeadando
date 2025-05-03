@@ -11,19 +11,19 @@ namespace SchoolTimetable
 {
     internal static class Session
     {
-        public static enUser? user;
-        public static enSchoolYear? schoolYear;
+        public static User? user;
+        public static SchoolYear? schoolYear;
 
-        public static void clear()
+        public static void Clear()
         {
             user = null;
             schoolYear = null;
         }
 
-        public static void updateSchoolYear()
+        public static void UpdateSchoolYear()
         {
             var context = new TimetableContext();
-            schoolYear = context.enSchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).First();
+            schoolYear = context.SchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).First();
         }
     }
 }

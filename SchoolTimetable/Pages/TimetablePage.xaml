@@ -1,0 +1,51 @@
+﻿<Page x:Class="SchoolTimetable.Pages.TimetablePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:SchoolTimetable.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TimetablePage">
+    <DockPanel>
+        <StackPanel Margin="0,0,20,0" Width="250">
+            <Label>Dátum</Label>
+            <DatePicker x:Name="dpDate" SelectedDateChanged="dpDate_SelectedDateChanged"/>
+            <Separator Opacity="0" Height="10"/>
+            <DockPanel>
+                <Button Click="btnPrev_Click" Padding="8">
+                    <ui:SymbolIcon Symbol="ArrowLeft12"/>
+                </Button>
+                <Separator Opacity="0" Width="10"/>
+                <Button Click="btnToday_Click" Padding="7">
+                    Mai nap
+                </Button>
+                <Separator Opacity="0" Width="10"/>
+                <Button Click="btnNext_Click" Padding="8">
+                    <ui:SymbolIcon Symbol="ArrowRight12"/>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+        <DataGrid x:Name="dgLessons" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Óra" Binding="{Binding LessonNum}"/>
+                <DataGridTextColumn Header="Kezdete" Binding="{Binding LessonStart, StringFormat=hh\\:mm}"/>
+                <DataGridTextColumn Header="Vége" Binding="{Binding LessonEnd, StringFormat=hh\\:mm}"/>
+                <DataGridTextColumn Header="Osztály" Binding="{Binding Class}"/>
+                <DataGridTextColumn Header="Tantárgy" Binding="{Binding Subject}"/>
+                <DataGridTextColumn Header="Tanár" Binding="{Binding Teacher}"/>
+                <DataGridTextColumn Header="Téma" Binding="{Binding Topic}"/>
+                <DataGridTemplateColumn Header="Naplózás">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Naplózás"
+                                Click="btnLog_Click"
+                                Tag="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Page>

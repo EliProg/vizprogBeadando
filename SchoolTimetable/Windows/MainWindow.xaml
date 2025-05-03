@@ -1,0 +1,37 @@
+﻿<ui:FluentWindow x:Class="SchoolTimetable.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:SchoolTimetable.Windows"
+        mc:Ignorable="d"
+        Height="450" Width="800" Title="Órarend">
+    <DockPanel>
+        <ui:TitleBar Title="Órarend" DockPanel.Dock="Top"/>
+        <Menu DockPanel.Dock="Top">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem x:Name="miAdmin" Visibility="Collapsed" Header="Adminisztráció">
+                <MenuItem Header="Órarend" Click="miTimetableLessons_Click"/>
+                <MenuItem Header="Felhasználók" Click="miUsers_Click"/>
+                <MenuItem Header="Csengetési rend" Click="miBellSchedules_Click"/>
+                <MenuItem Header="Osztályok" Click="miClasses_Click"/>
+                <MenuItem Header="Tantárgyak" Click="miSubjects_Click"/>
+                <MenuItem Header="Tanévek" Click="miSchoolYears_Click"/>
+                <MenuItem Header="Eseménynapló" Click="miEvents_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="miTimetables" Visibility="Collapsed" Click="miTimetables_Click" Header="Órarendek"/>
+            <MenuItem x:Name="miMyTimetable" Click="miMyTimetable_Click" Header="Saját órarend"/>
+            <MenuItem x:Name="miSchoolYear" Header="Tanév:"/>
+            <MenuItem x:Name="miUser" Header="Bejelentkezett:" HorizontalAlignment="Right">
+                <MenuItem Header="Kijelentkezés" Click="miLogout_Click"/>
+                <MenuItem Header="Bezárás" Click="miClose_Click"/>
+            </MenuItem>
+        </Menu>
+        <Frame Name="fmMain" Margin="20" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
+</ui:FluentWindow>
