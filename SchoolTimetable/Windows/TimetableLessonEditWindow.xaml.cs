@@ -110,6 +110,10 @@ namespace SchoolTimetable.Windows
                 titleBar.Title = "Óra módosítása";
                 ttLesson = context.TimetableLessons.Find(id);
             }
+            dpStart.DisplayDateStart = Session.schoolYear.StartDate;
+            dpStart.DisplayDateStart = Session.schoolYear.StartDate;
+            dpEnd.DisplayDateEnd = Session.schoolYear.EndDate;
+            dpEnd.DisplayDateEnd = Session.schoolYear.EndDate;
             this.DataContext = ttLesson;
         }
 
