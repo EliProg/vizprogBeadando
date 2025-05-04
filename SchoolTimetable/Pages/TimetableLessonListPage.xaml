@@ -15,7 +15,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Osztály" Binding="{Binding Class.Name}"/>
                 <DataGridTextColumn Header="Tantárgy" Binding="{Binding Subject.Name}"/>
-                <DataGridTextColumn Header="Tanár" Binding="{Binding User.Name}"/>
+                <DataGridTextColumn Header="Tanár" Binding="{Binding Teacher.Name}"/>
                 <DataGridTextColumn Header="Hét napja" Binding="{Binding DayNum}"/>
                 <DataGridTextColumn Header="Óra" Binding="{Binding LessonNum}"/>
                 <DataGridTextColumn Header="Érvényesség kezdete" Binding="{Binding StartDate, StringFormat=yyyy. MM. dd.}"/>

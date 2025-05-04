@@ -40,6 +40,8 @@ namespace SchoolTimetable.Windows
                 titleBar.Title = "Új tanév";
                 schoolYear = new SchoolYear();
                 context.Add(schoolYear);
+                schoolYear.StartDate = DateTime.Today;
+                schoolYear.EndDate = DateTime.Today;
             }
             else
             {
@@ -54,6 +56,11 @@ namespace SchoolTimetable.Windows
             if (string.IsNullOrWhiteSpace(schoolYear.Name))
             {
                 await UiMessageBox.Show("A név megadása kötelező!", "Hiba");
+                return;
+            }
+            if (context.SchoolYears.Any(y => y.Id != schoolYear.Id && y.Name == schoolYear.Name))
+            {
+                await UiMessageBox.Show("A megadott név már foglalt!", "Hiba");
                 return;
             }
             if (dpStart.SelectedDate == null)

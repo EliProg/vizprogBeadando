@@ -29,7 +29,7 @@ namespace SchoolTimetable.Pages
         private void GetList()
         {
             var context = new TimetableContext();
-            var schoolYears = context.SchoolYears.OrderBy(y => y.Name).ToList();
+            var schoolYears = context.SchoolYears.OrderByDescending(y => y.Active).ThenByDescending(y => y.StartDate).ToList();
             dgSchoolYears.ItemsSource = schoolYears;
         }
 

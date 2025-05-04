@@ -15,7 +15,8 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem x:Name="miAdmin" Visibility="Collapsed" Header="Adminisztráció">
+            <MenuItem x:Name="miSchoolYear" Header="Tanév:"/>
+            <MenuItem x:Name="miAdmin" Visibility="Collapsed" Header="Nyilvántartás">
                 <MenuItem Header="Órarend" Click="miTimetableLessons_Click"/>
                 <MenuItem Header="Felhasználók" Click="miUsers_Click"/>
                 <MenuItem Header="Csengetési rend" Click="miBellSchedules_Click"/>
@@ -26,7 +27,6 @@
             </MenuItem>
             <MenuItem x:Name="miTimetables" Visibility="Collapsed" Click="miTimetables_Click" Header="Órarendek"/>
             <MenuItem x:Name="miMyTimetable" Click="miMyTimetable_Click" Header="Saját órarend"/>
-            <MenuItem x:Name="miSchoolYear" Header="Tanév:"/>
             <MenuItem x:Name="miUser" Header="Bejelentkezett:" HorizontalAlignment="Right">
                 <MenuItem Header="Kijelentkezés" Click="miLogout_Click"/>
                 <MenuItem Header="Bezárás" Click="miClose_Click"/>

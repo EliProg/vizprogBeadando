@@ -75,7 +75,7 @@ namespace SchoolTimetable.Windows
             var days = Enumerable.Range(1, 7).Select(x => new
                 {
                     Id = (byte)x,
-                    Name = culture.DateTimeFormat.DayNames[x % 7]
+                    Name = Helper.FirstCharToUpper(culture.DateTimeFormat.DayNames[x % 7])
                 }).ToList();
             cbDay.SelectedValuePath = "Id";
             cbDay.DisplayMemberPath = "Name";

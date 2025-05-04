@@ -62,6 +62,11 @@ namespace SchoolTimetable.Windows
                 await UiMessageBox.Show("A felhasználónév megadása kötelező!", "Hiba");
                 return;
             }
+            if (context.Users.Any(u => u.Id != user.Id && u.Username == user.Username))
+            {
+                await UiMessageBox.Show("A megadott felhasználónév már foglalt!", "Hiba");
+                return;
+            }
             if (!string.IsNullOrWhiteSpace(pbPassword.Password))
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(pbPassword.Password);

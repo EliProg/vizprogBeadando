@@ -56,6 +56,11 @@ namespace SchoolTimetable.Windows
                 await UiMessageBox.Show("A név megadása kötelező!", "Hiba");
                 return;
             }
+            if (context.Classes.Any(c => c.Id != _class.Id && c.Name == _class.Name))
+            {
+                await UiMessageBox.Show("A megadott név már foglalt!", "Hiba");
+                return;
+            }
             context.SaveChanges();
             Log.Db(insert ? "Insert" : "Update", _class);
             this.DialogResult = true;
